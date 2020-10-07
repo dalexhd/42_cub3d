@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/07 17:26:10 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/07 17:34:29 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ VER					=	$(shell lsb_release -sr)
 
 ifeq ($(OS), $(filter $(OS), Linux Ubuntu))
 	MINILIBX_DIR	=	minilibx/linux/
-	MLXFLAG			=	-lbsd -lmlx -lXext -lX11 -lm
+	MLXFLAG			=	-lbsd -lXext -lX11 -lm
 else
 	MINILIBX_DIR	=	minilibx/opengl/
 	MLXFLAG			=	-l mlx -framework OpenGL -framework AppKit
