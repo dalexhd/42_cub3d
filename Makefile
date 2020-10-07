@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/07 18:01:30 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/07 19:04:13 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,11 @@ OBJ_DIR				=	obj/
 SRC_DIR				=	srcs/
 BONUS_DIR			=	bonus/
 LIBFT_DIR			=	libft/
-COVID_NORM			=	ruby -e STDOUT.sync=true -e 'load($$0=ARGV.shift)' ~/.norminette/norminette.rb
+ifeq ($(shell whoami), $(filter $(shell whoami), runner))
+	COVID_NORM		=	ruby ~/.norminette/norminette.rb
+else
+	COVID_NORM		=	ruby -e STDOUT.sync=true -e 'load($$0=ARGV.shift)' ~/.norminette/norminette.rb
+endif
 RESULT				=	$(shell cat output.txt)
 AUTHOR				=	$(shell cat author)
 LAST_COMMIT_DATE	=	$(shell git log -1 --date=format:"%m/%d/%Y" --format="%ad   [%cr]")

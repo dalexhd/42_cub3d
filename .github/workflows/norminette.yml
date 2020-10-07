@@ -30,4 +30,4 @@ jobs:
       - name: Install norminette
         run: cd ~/.norminette && sudo bundle
       - name: Run norminette
-        run: make normi
+        run: if (make normi | tee /dev/stderr | grep -q Error); then echo ''; echo '🚨 Norminette failed!'; exit 1; fi
