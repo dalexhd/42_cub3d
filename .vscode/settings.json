@@ -1,0 +1,47 @@
+{
+    "remote.SSH.useLocalServer": true,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/.hg/store/**": true,
+        "*.o": true,
+        "*.a": true
+    },
+    "42header.email": "aborboll@student.42.fr",
+    "42header.username": "aborboll",
+    "workbench.editor.showTabs": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.renderWhitespace": "all",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.associations": {
+        "cmath": "c",
+        "array": "c",
+        "deque": "c",
+        "string": "c",
+        "unordered_map": "c",
+        "vector": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "iostream": "cpp",
+        "optional": "c",
+        "istream": "c",
+        "ostream": "c",
+        "ratio": "c",
+        "system_error": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "*.tcc": "c",
+        "untitled-2": "cpp",
+        "algorithm": "c"
+    },
+    "42norminette.command": "~/.norminette/norminette.rb",
+    "42norminette.showErrors": "all",
+    "workbench.colorTheme": "Visual Studio 2019 Dark",
+    "[*.c]": {
+        "editor.comments.ignoreEmptyLines": false
+    },
+}

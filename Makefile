@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/07 15:54:17 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/07 19:04:13 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,40 +26,46 @@ OBJ_DIR				=	obj/
 SRC_DIR				=	srcs/
 BONUS_DIR			=	bonus/
 LIBFT_DIR			=	libft/
-COVID_NORM			=	ruby -e STDOUT.sync=true -e 'load($$0=ARGV.shift)' ~/.norminette/norminette.rb
+ifeq ($(shell whoami), $(filter $(shell whoami), runner))
+	COVID_NORM		=	ruby ~/.norminette/norminette.rb
+else
+	COVID_NORM		=	ruby -e STDOUT.sync=true -e 'load($$0=ARGV.shift)' ~/.norminette/norminette.rb
+endif
 RESULT				=	$(shell cat output.txt)
 AUTHOR				=	$(shell cat author)
 LAST_COMMIT_DATE	=	$(shell git log -1 --date=format:"%m/%d/%Y" --format="%ad   [%cr]")
 LAST_COMMIT_HASH	=	$(shell git log -1 --date=format:"%m/%d/%y %T" --format="%H")
-LAST_COMMIT_MESSAGE	=	$(shell git log -1 --date=format:"%m/%d/%y %T" --format="%s")
+LAST_COMMIT_MESSAGE	=	$(shell git log -1 --date=format:"%m/%d/%y %T" --format=\'%s\')
 OS					=	$(shell lsb_release -si)
 ARCH				=	$(shell uname -m | sed 's/x86_//;s/i[3-6]86/32/')
 VER					=	$(shell lsb_release -sr)
 
 ifeq ($(OS), $(filter $(OS), Linux Ubuntu))
 	MINILIBX_DIR	=	minilibx/linux/
-	MLXFLAG			=	-lbsd -lmlx -lXext -lX11 -lm
+	MLXFLAG			=	-lbsd -lXext -lX11 -lm
 else
 	MINILIBX_DIR	=	minilibx/opengl/
 	MLXFLAG			=	-l mlx -framework OpenGL -framework AppKit
 endif
 
 # Mandatory part
-UTILS				=
-SRCS				=
+UTILS				=	utils/parse/colors.c			utils/parse/map.c			utils/parse/screen.c			utils/parse/textures.c			\
+						utils/validate/colors.c			utils/validate/map.c		utils/validate/screen.c			utils/validate/textures.c
+SRCS				=	controls.c						game.c						parse.c							validate.c						\
+						window.c
 SOURCES				=	$(SRCS) $(UTILS)
 
 # Bonus part
-BONUS_UTILS			=	
-BONUS_SRCS			=	
+BONUS_UTILS			=
+BONUS_SRCS			=
 BONUS_SOURCES		=	$(BONUS_SRCS) $(BONUS_UTILS)
 
-NORME				=	$(addsuffix /*.h,$(HEADER)) \
+NORME				=	$(addsuffix *.h,$(HEADER_DIR)) \
 						$(addprefix $(SRC_DIR),$(SOURCES)) \
 						$(addprefix $(BONUS_DIR),$(BONUS_SOURCES)) \
-						$(addsuffix /**/*.h,$(LIBFT_DIR)) \
-						$(addsuffix /**/*.c,$(LIBFT_DIR)) \
-						$(addsuffix /**/**/*.c,$(LIBFT_DIR))
+						$(addsuffix **/*.h,$(LIBFT_DIR)) \
+						$(addsuffix **/*.c,$(LIBFT_DIR)) \
+						$(addsuffix **/**/*.c,$(LIBFT_DIR))
 
 
 # Mandatory Objects
@@ -116,7 +122,7 @@ $(OBJ_DIR):
 			@make -C $(MINILIBX_DIR)
 			@echo ${CUT}[${Y}$(OUTPUT)]${X} ${B}Creating: ${R}$(OBJ_DIR)${X}
 			@mkdir -p $(OBJ_DIR)
-			@mkdir -p $(OBJ_DIR)/utils
+			@mkdir -p $(OBJ_DIR)/utils $(OBJ_DIR)/utils/parse $(OBJ_DIR)/utils/validate
 
 # Normal objects
 $(NAME): $(OBJ_DIR) $(OBJS)

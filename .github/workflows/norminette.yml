@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Cub3D-CI
+name: Norminette-CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
@@ -22,21 +22,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Install necessary linux packages
-        run: sudo apt install -y libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev
+      - name: Install necessary ruby linux packages
+        run: sudo apt install -y ruby ruby-bundler ruby-dev
 
-      # Verify cub3d make targets
-      - name: Execute make help command
-        run: make help
-      - name: Execute make command
-        run: make
-      - name: Execute make clean command
-        run: make clean
-      - name: Execute make fclean command
-        run: make && make fclean
-      - name: Execute make re command
-        run: make && make re
-
-      # Run cub3d tests
-      - name: Run cub3d tests
-        run: make test
+      - name: Pull norminette
+        run: git clone https://github.com/42Paris/norminette.git ~/.norminette
+      - name: Install norminette
+        run: cd ~/.norminette && sudo bundle
+      - name: Run norminette
+        run: if (make normi | tee /dev/stderr | grep -q Error); then echo ''; echo '🚨 Norminette failed!'; exit 1; fi
