@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/07 15:54:17 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/07 17:26:10 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,21 +45,23 @@ else
 endif
 
 # Mandatory part
-UTILS				=
-SRCS				=
+UTILS				=	utils/parse/colors.c			utils/parse/map.c			utils/parse/screen.c			utils/parse/textures.c			\
+						utils/validate/colors.c			utils/validate/map.c		utils/validate/screen.c			utils/validate/textures.c
+SRCS				=	controls.c						game.c						parse.c							validate.c						\
+						window.c
 SOURCES				=	$(SRCS) $(UTILS)
 
 # Bonus part
-BONUS_UTILS			=	
-BONUS_SRCS			=	
+BONUS_UTILS			=
+BONUS_SRCS			=
 BONUS_SOURCES		=	$(BONUS_SRCS) $(BONUS_UTILS)
 
-NORME				=	$(addsuffix /*.h,$(HEADER)) \
+NORME				=	$(addsuffix *.h,$(HEADER_DIR)) \
 						$(addprefix $(SRC_DIR),$(SOURCES)) \
 						$(addprefix $(BONUS_DIR),$(BONUS_SOURCES)) \
-						$(addsuffix /**/*.h,$(LIBFT_DIR)) \
-						$(addsuffix /**/*.c,$(LIBFT_DIR)) \
-						$(addsuffix /**/**/*.c,$(LIBFT_DIR))
+						$(addsuffix **/*.h,$(LIBFT_DIR)) \
+						$(addsuffix **/*.c,$(LIBFT_DIR)) \
+						$(addsuffix **/**/*.c,$(LIBFT_DIR))
 
 
 # Mandatory Objects
@@ -116,7 +118,7 @@ $(OBJ_DIR):
 			@make -C $(MINILIBX_DIR)
 			@echo ${CUT}[${Y}$(OUTPUT)]${X} ${B}Creating: ${R}$(OBJ_DIR)${X}
 			@mkdir -p $(OBJ_DIR)
-			@mkdir -p $(OBJ_DIR)/utils
+			@mkdir -p $(OBJ_DIR)/utils $(OBJ_DIR)/utils/parse $(OBJ_DIR)/utils/validate
 
 # Normal objects
 $(NAME): $(OBJ_DIR) $(OBJS)
