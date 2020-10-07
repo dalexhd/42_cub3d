@@ -1,0 +1,12 @@
+.DS_Store
+*.o
+*.a
+valgrind_out
+testers
+results.txt
+output.txt
+test.mine
+test.libc
+history.csv
+CUB3D
+main_test.c
