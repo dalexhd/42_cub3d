@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/07 17:11:42 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/08 22:16:34 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct	s_game
 {
 	void		*mlx;
 	void		*tmp_mlx;
+	char		*tmp_map;
 	void		*win;
 	int			width;
 	int			height;
@@ -176,4 +177,23 @@ typedef struct	s_game
 	t_direction	plane;
 }				t_game;
 
+t_game			*load_game(int argc, char **argv);
+void			parse_file(t_game *game, char *file);
+
+/*
+** Init functions.
+*/
+t_player		init_player(void);
+t_textures		init_textures(void);
+t_game			*init_structure(void);
+t_game			*init_game(int argc, char **argv);
+/*
+** Validate functions.
+*/
+t_bool			validate_color(char *color);
+/*
+** Parse functions.
+*/
+void			parse_floor(t_game *game, char *line);
+void			parse_ceiling(t_game *game, char *line);
 #endif

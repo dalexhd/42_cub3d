@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 15:43:53 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/07 16:44:59 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/08 19:23:45 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ STR					= 	ft_strcat.c				ft_strncat.c			ft_strstr.c				ft_strchr.c				\
 						ft_strrev.c				ft_countwords.c			ft_strmapi.c			ft_strncmp.c			\
 						ft_strcmp.c				ft_strnstr.c			ft_split.c				ft_strrchr.c			\
 						ft_strtrim.c			ft_substr.c				ft_tolower.c			ft_toupper.c			\
-						ft_strjoin_free.c		ft_strto.c				ft_putchar.c			ft_putstr.c
+						ft_strjoin_free.c		ft_strto.c				ft_putchar.c			ft_putstr.c				\
+						ft_strevery.c
 
 UTILS				=	ft_isalnum.c			ft_isalpha.c			ft_isascii.c			ft_isdigit.c			\
 						ft_isspace.c			ft_isprint.c			ft_numlen.c				ft_max.c				\
@@ -46,7 +47,7 @@ UTILS				=	ft_isalnum.c			ft_isalpha.c			ft_isascii.c			ft_isdigit.c			\
 
 MEM					=	ft_memccpy.c			ft_memchr.c				ft_memcmp.c				ft_memcpy.c				\
 						ft_memmove.c			ft_memset.c				ft_bzero.c				ft_calloc.c				\
-						ft_strdel.c
+						ft_strdel.c				ft_split_del.c
 
 CONVERT				=	ft_atoi.c				ft_itoa.c				ft_itoa_long.c			ft_itoa_llong.c			\
 						ft_itoa_ullong.c		ft_utoabase.c			ft_abs.c				ft_floor.c				\

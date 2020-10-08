@@ -49,10 +49,11 @@ else
 endif
 
 # Mandatory part
-UTILS				=	utils/parse/colors.c			utils/parse/map.c			utils/parse/screen.c			utils/parse/textures.c			\
-						utils/validate/colors.c			utils/validate/map.c		utils/validate/screen.c			utils/validate/textures.c
-SRCS				=	controls.c						game.c						parse.c							validate.c						\
-						window.c
+UTILS				=	utils/parse/map.c			utils/parse/screen.c		utils/parse/textures.c			utils/parse/colors.c				\
+						utils/validate/colors.c		utils/validate/map.c		utils/validate/screen.c			utils/validate/textures.c			\
+
+SRCS				=	controls.c						parse.c						validate.c						window.c						\
+						init.c
 SOURCES				=	$(SRCS) $(UTILS)
 
 # Bonus part

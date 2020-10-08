@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 20:45:27 by aborboll          #+#    #+#             */
-/*   Updated: 2020/09/15 16:52:03 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/08 19:24:10 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,6 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 				void (*del)(void *));
 char			*ft_utoabase(t_ullong n, int base);
+t_bool			ft_strevery(char const *s, t_bool (*f)(int));
+void			ft_split_del(char **ptr);
 #endif
