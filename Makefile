@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/07 19:04:13 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/08 21:40:28 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ_DIR				=	obj/
 SRC_DIR				=	srcs/
 BONUS_DIR			=	bonus/
 LIBFT_DIR			=	libft/
-ifeq ($(shell whoami), $(filter $(shell whoami), runner))
+ifeq ($(shell whoami), runner)
 	COVID_NORM		=	ruby ~/.norminette/norminette.rb
 else
 	COVID_NORM		=	ruby -e STDOUT.sync=true -e 'load($$0=ARGV.shift)' ~/.norminette/norminette.rb
@@ -37,6 +37,7 @@ LAST_COMMIT_DATE	=	$(shell git log -1 --date=format:"%m/%d/%Y" --format="%ad   [
 LAST_COMMIT_HASH	=	$(shell git log -1 --date=format:"%m/%d/%y %T" --format="%H")
 LAST_COMMIT_MESSAGE	=	$(shell git log -1 --date=format:"%m/%d/%y %T" --format=\'%s\')
 OS					=	$(shell lsb_release -si)
+USER				=	$(shell whoami)
 ARCH				=	$(shell uname -m | sed 's/x86_//;s/i[3-6]86/32/')
 VER					=	$(shell lsb_release -sr)
 
@@ -61,6 +62,8 @@ BONUS_UTILS			=
 BONUS_SRCS			=
 BONUS_SOURCES		=	$(BONUS_SRCS) $(BONUS_UTILS)
 
+LEAKS_FLAGS			=	--tool=memcheck --leak-check=full --leak-resolution=high --show-leak-kinds=all --track-origins=yes
+LEAKS_EXE			=	./tools/memory_leak.sh ${OUTPUT} maps/map.cub ${LEAKS_FLAGS}
 NORME				=	$(addsuffix *.h,$(HEADER_DIR)) \
 						$(addprefix $(SRC_DIR),$(SOURCES)) \
 						$(addprefix $(BONUS_DIR),$(BONUS_SOURCES)) \
@@ -181,6 +184,20 @@ normi:		## Check norminette.
 				$(COVID_NORM) $(NORME) | sed "s/Norme/$(NORM_COLOR_T)➤  $(NORM_COLOR)Norme/g;s/Warning/\t $(NORM_COLOR_WAR)Warning/g;s/Error/\t🚨 $(NORM_COLOR_ERR)Error/gm;s/$$/$(X)/g"; \
 			else\
 				@norminette $(NORME) | sed "s/Norme/$(NORM_COLOR_T)➤  $(NORM_COLOR)Norme/g;s/Warning/\t $(NORM_COLOR_WAR)Warning/g;s/Error/\t🚨 $(NORM_COLOR_ERR)Error/g"; \
+			fi
+
+leak:		## Run memory leak testa.
+			@if [ $(shell $(LEAKS_EXE) && cat valgrind_out | grep "definitely lost:" | cut -d : -f 2 | cut -d b  -f 1 | tr -d " " | tr -d ",") ]; then\
+				echo ${BOLD}${UND}${R}🚨 Memory leaks detected${X};\
+				if [ $(USER) = "runner" ]; then\
+					cat valgrind_out;\
+				else\
+					echo ${G};cat valgrind_out | grep -A2 "HEAP SUMMARY:" | cut -d = -f 5 | cut -c 2-;\
+					echo ${CYAN};cat valgrind_out | grep -A5 "LEAK SUMMARY:" | cut -d = -f 5 | cut -c 2-;\
+				fi;\
+				exit 1;\
+			else\
+				echo ${BOLD}${UND}${G}No memory leaks${X};\
 			fi
 
 ##@ Compilation
