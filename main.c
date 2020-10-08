@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:26:50 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/07 17:27:47 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/08 22:25:37 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	return (EXIT_SUCCESS);
+	t_game	*game;
+
+	game = init_game(argc, argv);
+	free(game);
+	return (TRUE);
 }

@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install necessary linux packages
-        run: sudo apt install -y libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev
+        run: sudo apt install -y libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev valgrind
 
       # Verify cub3d make targets
       - name: Execute make help command
@@ -36,7 +36,9 @@ jobs:
         run: make && make fclean
       - name: Execute make re command
         run: make && make re
-
+      # Check cub3d leaks
+      - name: Check for leaks
+        run: make leak
       # Run cub3d tests
       - name: Run cub3d tests
         run: make test
