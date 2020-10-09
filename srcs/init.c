@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/08 22:17:40 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/09 14:30:29 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ t_game			*init_structure(void)
 	t_game		*game;
 
 	game = (t_game *)malloc(sizeof(t_game));
+	game->width = -1;
+	game->height = -1;
 	game->textures = init_textures();
+	game->tmp_map = ft_strdup("");
 	game->minimap = 1;
 	game->player = (t_player){.x = -0., .y = -0.};
 	game->dir = (t_direction){.x = -1., .y = 0.};

@@ -37,8 +37,10 @@ jobs:
       - name: Execute make re command
         run: make && make re
       # Check cub3d leaks
-      - name: Check for leaks
+      - name: Check for leaks on a valid cub
         run: make leak
+      - name: Check for leaks for a non existant cub
+        run: make leak MAP="maps/invented.cub"
       # Run cub3d tests
       - name: Run cub3d tests
         run: make test

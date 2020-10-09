@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:14 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/08 22:20:54 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/09 13:25:19 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void		parse_file(t_game *game, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
+		free(game->tmp_map);
 		free(game);
 		ft_error("Error opening cub file!", TRUE);
 	}
@@ -61,8 +62,10 @@ void		parse_file(t_game *game, char *file)
 		parse_textures(game, line);
 		parse_floor(game, line);
 		parse_ceiling(game, line);
+		parse_map(game, line);
 		free(line);
 	}
 	free(line);
 	close(fd);
+	fill_map(game);
 }

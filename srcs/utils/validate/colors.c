@@ -6,11 +6,21 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:21 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/08 17:58:26 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/09 12:22:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
+
+t_bool	has_colors(t_game *game)
+{
+	return (game->colors.ceiling.r &&
+	game->colors.ceiling.g &&
+	game->colors.ceiling.b &&
+	game->colors.floor.r &&
+	game->colors.floor.g &&
+	game->colors.floor.b);
+}
 
 t_bool	validate_color(char *color)
 {

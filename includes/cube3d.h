@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/08 22:16:34 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/09 13:54:57 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,9 +191,15 @@ t_game			*init_game(int argc, char **argv);
 ** Validate functions.
 */
 t_bool			validate_color(char *color);
+t_bool			has_colors(t_game *game);
+t_bool			has_screen(t_game *game);
+t_bool			has_textures(t_game *game);
+t_bool			validate_map(char *tmp_map);
 /*
 ** Parse functions.
 */
 void			parse_floor(t_game *game, char *line);
 void			parse_ceiling(t_game *game, char *line);
+void			parse_map(t_game *game, char *line);
+void			fill_map(t_game *game);
 #endif

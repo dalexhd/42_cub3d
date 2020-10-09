@@ -6,8 +6,14 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:41 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/07 17:29:24 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/09 12:50:11 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
+
+t_bool	has_screen(t_game *game)
+{
+	return (game->width != -1 &&
+	game->height != -1);
+}
