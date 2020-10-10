@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/09 14:30:29 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/10 20:22:23 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_game			*init_structure(void)
 	game->dir = (t_direction){.x = -1., .y = 0.};
 	game->plane = (t_direction){.x = 0, .y = 1};
 	game->player = init_player();
+	game->valid = (t_valid){.screen = true, .textures = true,
+		.colors = true, .map = true};
 	return (game);
 }
 
@@ -64,6 +66,9 @@ t_game			*init_game(int argc, char **argv)
 	if (argc < 2 || argc > 3)
 		ft_error("Please check your arguments", true);
 	game = init_structure();
-	parse_file(game, argv[1]);
+	parse_game(game, argv[1]);
+	if (!valid_cub(game))
+		exit(EXIT_FAILURE);
+	fill_map(game);
 	return (game);
 }

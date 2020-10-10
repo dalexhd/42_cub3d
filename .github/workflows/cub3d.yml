@@ -23,7 +23,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install necessary linux packages
-        run: sudo apt install -y libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev valgrind
+        run: |
+          sudo apt install -y libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev valgrind xvfb
+          export DISPLAY=:99.0
+          Xvfb -ac :99 -screen 0 4096x2304x16 > /dev/null 2>&1 &
 
       # Verify cub3d make targets
       - name: Execute make help command
@@ -38,9 +41,9 @@ jobs:
         run: make && make re
       # Check cub3d leaks
       - name: Check for leaks on a valid cub
-        run: make leak
+        run: xvfb-run --auto-servernum make leak
       - name: Check for leaks for a non existant cub
-        run: make leak MAP="maps/invented.cub"
+        run: xvfb-run --auto-servernum make leak MAP="maps/invented.cub"
       # Run cub3d tests
       - name: Run cub3d tests
-        run: make test
+        run: xvfb-run --auto-servernum make test

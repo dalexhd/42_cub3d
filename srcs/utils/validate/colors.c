@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:21 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/09 12:22:47 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/10 14:11:56 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,22 @@ t_bool	has_colors(t_game *game)
 
 t_bool	validate_color(char *color)
 {
-	if (ft_strlen(color) < 1)
+	int	num;
+
+	if (!color || ft_strlen(color) < 1)
 	{
-		ft_error("Invalid floor ceiling colors length!", false);
-		return (FALSE);
+		ft_error("ERR: Invalid colors length!", false);
+		return (false);
 	}
 	else if (!ft_strevery(color, ft_isdigit))
 	{
-		ft_error("Invalid floor ceiling colors numbers!", false);
-		return (FALSE);
+		ft_error("ERR: Invalid RGB number. Found \"%s\"", false, color);
+		return (false);
 	}
-	else if (ft_atoi(color) > 255)
+	else if ((num = ft_atoi(color)) > 255)
 	{
-		ft_error("Max color value is 255!", false);
-		return (FALSE);
+		ft_error("ERR: Max color value is 255. Found %i", false, num);
+		return (false);
 	}
-	return (TRUE);
+	return (true);
 }

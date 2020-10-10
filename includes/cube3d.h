@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/09 13:54:57 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/10 21:19:35 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,14 @@ typedef struct	s_ray
 	double		texture_pos;
 }				t_ray;
 
+typedef struct	s_valid
+{
+	t_bool		screen;
+	t_bool		textures;
+	t_bool		colors;
+	t_bool		map;
+}				t_valid;
+
 typedef struct	s_game
 {
 	void		*mlx;
@@ -175,10 +183,11 @@ typedef struct	s_game
 	t_direction	dir;
 	t_textures	textures;
 	t_direction	plane;
+	t_valid		valid;
 }				t_game;
 
 t_game			*load_game(int argc, char **argv);
-void			parse_file(t_game *game, char *file);
+void			parse_game(t_game *game, char *file);
 
 /*
 ** Init functions.
@@ -190,16 +199,29 @@ t_game			*init_game(int argc, char **argv);
 /*
 ** Validate functions.
 */
+t_bool			valid_cubfile(char *file);
 t_bool			validate_color(char *color);
 t_bool			has_colors(t_game *game);
 t_bool			has_screen(t_game *game);
 t_bool			has_textures(t_game *game);
 t_bool			validate_map(char *tmp_map);
+t_bool			validate_screen(t_game *game, char *height, char *width);
+void			invalid_screen(t_game *game, char **size);
+t_bool			valid_cub(t_game *game);
+t_bool			validate_texture(t_game *game, char *texture_path, char *name);
 /*
 ** Parse functions.
 */
+void			parse(t_game *game, char *file);
+int				parse_file(t_game *game, char *file);
 void			parse_floor(t_game *game, char *line);
 void			parse_ceiling(t_game *game, char *line);
 void			parse_map(t_game *game, char *line);
+void			parse_textures(t_game *game, char *line);
 void			fill_map(t_game *game);
+/*
+** Memory utils.
+*/
+void			clear_memory(t_game *game);
+void			clear_texture(t_texture texture, void *mlx_ptr);
 #endif

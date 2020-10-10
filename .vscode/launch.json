@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "${workspaceRoot}/CUB3D",
 			"args": [
-				"./data/maps/map.cub"
+				"./maps/map.cub"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceRoot}",

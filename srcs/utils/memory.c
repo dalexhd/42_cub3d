@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 15:15:10 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/10 21:25:11 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/10 10:57:57 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/10 20:41:12 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../includes/cube3d.h"
 
-void		ft_error(char *s, t_bool force, ...)
+void	clear_texture(t_texture texture, void *mlx_ptr)
 {
-	va_list args;
+	if (texture.texture)
+		mlx_destroy_image(mlx_ptr, texture.texture);
+}
 
-	va_start(args, force);
-	ft_printf(C_RED"❌ ");
-	ft_vprintf(s, &args);
-	ft_printf(C_X"\n");
-	va_end(args);
-	if (force)
-		exit(EXIT_FAILURE);
+void	clear_memory(t_game *game)
+{
+	free(game->tmp_map);
+	if (game->tmp_mlx)
+	{
+		mlx_destroy_display(game->tmp_mlx);
+		free(game->tmp_mlx);
+	}
+	if (game->map != NULL)
+		ft_split_del(game->map);
+	free(game);
 }

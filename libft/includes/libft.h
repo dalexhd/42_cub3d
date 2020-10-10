@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 20:45:27 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/08 19:24:10 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/10 17:54:06 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,7 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 char			*ft_utoabase(t_ullong n, int base);
 t_bool			ft_strevery(char const *s, t_bool (*f)(int));
 void			ft_split_del(char **ptr);
+char			*ft_strreplace(const char *haystack, const char *needle,
+				char *str);
+t_bool			ft_strendswith(const char *haystack, const char *needle);
 #endif

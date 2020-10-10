@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 17:55:19 by aborboll          #+#    #+#             */
-/*   Updated: 2020/08/21 12:57:19 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/10 13:04:12 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ enum			e_lengths
 };
 
 int				ft_printf(char *format, ...);
+int				ft_vprintf(char *format, va_list *args);
+void			print(t_info *info);
+void			check_and_print(t_info *info);
 void			init_struct(t_info *info, char **str, va_list *args);
 void			reinit(t_info *info);
 void			reinit_lengths(t_info *info);

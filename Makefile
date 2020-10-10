@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/09 14:39:01 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/10 21:54:27 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,14 +50,18 @@ else
 endif
 
 # Mandatory part
-PARSE				=	utils/parse/map.c				utils/parse/colors.c
 
-VALIDATE			=	utils/validate/colors.c			utils/validate/map.c		utils/validate/screen.c			utils/validate/textures.c
+UTILS				=	utils/memory.c
+
+UTILS_PARSE			=	utils/parse/file.c				utils/parse/map.c			utils/parse/colors.c			utils/parse/textures.c
+
+UTILS_VALIDATE		=	utils/validate/file.c			utils/validate/map.c		utils/validate/screen.c			utils/validate/textures.c		\
+						utils/validate/colors.c
 
 SRCS				=	controls.c						parse.c						validate.c						window.c						\
 						init.c
 
-SOURCES				=	$(SRCS) $(PARSE) $(VALIDATE)
+SOURCES				=	$(SRCS) $(UTILS) $(UTILS_PARSE) $(UTILS_VALIDATE)
 
 # Bonus part
 BONUS_UTILS			=
@@ -220,7 +224,7 @@ re:			## Call fclean => all
 ##@ Testing
 
 test:		## Make cub3d test
-			./tools/tester/test_map_valid_function.sh $(OUTPUT)
+			cd ./tools/tester && ./test_map_valid_function.sh -f
 
 ##@ Help
 help:		## View all available commands.

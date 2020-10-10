@@ -1,11 +1,11 @@
 R 1920 1080
 
-NO ./data/textures/floor.xpm
-SO ./data/textures/floor.xpm
-WE ./data/textures/floor.xpm
-EA ./data/textures/floor.xpm
+NO ./assets/textures/NO.xpm
+SO ./assets/textures/SO.xpm
+WE ./assets/textures/WE.xpm
+EA ./assets/textures/EA.xpm
 
-S ./data/textures/floor3.xpm
+S ./assets/textures/ITEM.xpm
 F 255,255,255
 C 255,255,255
 

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:11 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/09 14:01:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/10 15:45:02 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		parse_map(t_game *game, char *line)
 	has_textures(game) && is_map_line(line))
 	{
 		tmp = game->tmp_map;
-		game->tmp_map = ft_strjoin(tmp, ft_strcat(line, "\n"));
+		game->tmp_map = ft_strjoin(game->tmp_map, ft_strcat(line, "\n"));
 		free(tmp);
 	}
 }
@@ -51,8 +51,5 @@ void		parse_map(t_game *game, char *line)
 void		fill_map(t_game *game)
 {
 	if (validate_map(game->tmp_map))
-	{
 		game->map = ft_split(game->tmp_map, '\n');
-		free(game->tmp_map);
-	}
 }
