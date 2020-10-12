@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/12 02:42:41 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/12 20:18:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ t_bool				validate_map(char *tmp_map);
 t_bool				validate_screen(t_game *game, char *height, char *width);
 void				invalid_screen(t_game *game, char **size);
 t_bool				valid_cub(t_game *game);
-t_bool				validate_texture(t_game *game, char *texture_path, char *name);
+t_bool				validate_texture(t_game *game, char *path, char *name);
 t_bool				valid_cub_struct(t_game *game);
 /*
 ** Parse functions.
