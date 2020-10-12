@@ -3,7 +3,7 @@
         {
             "type": "shell",
             "label": "C/C++: gcc build active file",
-            "command": "cd ${workspaceRoot} && make re && make run",
+            "command": "cd ${workspaceRoot} && make re",
             "options": {
                 "cwd": "/usr/bin"
             }

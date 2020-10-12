@@ -39,11 +39,19 @@ jobs:
         run: make && make fclean
       - name: Execute make re command
         run: make && make re
+      # Clone tester
+      - name: Clone tester
+        run: git clone https://github.com/dalexhd/cub3d-tester.git
       # Check cub3d leaks
-      - name: Check for leaks on a valid cub
-        run: xvfb-run --auto-servernum make leak
-      - name: Check for leaks for a non existant cub
-        run: xvfb-run --auto-servernum make leak MAP="maps/invented.cub"
-      # Run cub3d tests
-      - name: Run cub3d tests
-        run: xvfb-run --auto-servernum make test
+      - name: Run cub3D tests
+        run: xvfb-run --auto-servernum --server-args="-screen 0 4096x2304x16" make test
+        env:
+          TERM: xterm
+          DISPLAY: :99.0
+      # Upload test log
+      - name: Upload testing log
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: test-log
+          path: cub3d-tester/report.log

@@ -6,14 +6,14 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/10 21:54:27 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/12 19:04:36 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #-fsanitize=address
 NAME				=	cub3d.a
 BONUS				=	cub3D_bonus
-OUTPUT				=	CUB3D
+OUTPUT				=	cub3D
 PID					=	.pid
 
 CC					=	@gcc
@@ -222,9 +222,11 @@ re:			## Call fclean => all
 			@make all
 
 ##@ Testing
+testback:		## Make cub3d test
+			cd ./tools/tester && ./test_map_valid_function.sh -f
 
 test:		## Make cub3d test
-			cd ./tools/tester && ./test_map_valid_function.sh -f
+			cd ./cub3d-tester && ./destroyer.sh --threads 5 --show-output
 
 ##@ Help
 help:		## View all available commands.

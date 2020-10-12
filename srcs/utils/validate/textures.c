@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:20:18 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/10 22:05:36 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/11 16:04:48 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,21 @@
 
 t_texture		load_texture(void *mlx_ptr, t_texture texture)
 {
-	texture.texture = mlx_xpm_file_to_image(mlx_ptr, texture.path,
-	&texture.width, &texture.height);
-	texture.ptr = (int *)mlx_get_data_addr(texture.texture,
-	&texture.bpp,
-	&texture.size_l,
-	&texture.endian);
+	if (ft_strendswith(texture.path, ".xpm"))
+	{
+		texture.ext = "xpm";
+		texture.texture = mlx_xpm_file_to_image(mlx_ptr, texture.path,
+		&texture.width, &texture.height);
+	}
+	else if (ft_strendswith(texture.path, ".png"))
+	{
+		texture.ext = "xpm";
+		texture.texture = mlx_xpm_file_to_image(mlx_ptr, texture.path,
+		&texture.width, &texture.height);
+	}
+	if (texture.texture)
+		texture.ptr = (int *)mlx_get_data_addr(texture.texture,
+		&texture.bpp, &texture.size_l, &texture.endian);
 	return (texture);
 }
 

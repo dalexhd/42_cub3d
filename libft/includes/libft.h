@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 20:45:27 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/10 17:54:06 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/11 22:11:39 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,5 @@ void			ft_split_del(char **ptr);
 char			*ft_strreplace(const char *haystack, const char *needle,
 				char *str);
 t_bool			ft_strendswith(const char *haystack, const char *needle);
+size_t			ft_countchars(char const *str, char c);
 #endif

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-CUB3D=../../CUB3D
+CUB3D=../../cub3D
 MAPS_FOLDER=./maps/
 
 MAIN_BG="\033[46;30m"

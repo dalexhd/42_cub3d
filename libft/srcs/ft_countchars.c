@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory.c                                           :+:      :+:    :+:   */
+/*   ft_countchars.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/10 10:57:57 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/11 19:16:10 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/11 19:57:22 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/11 19:59:40 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube3d.h"
+#include "../includes/libft.h"
 
-void	clear_texture(t_texture texture, void *mlx_ptr)
+size_t		ft_countchars(char const *str, char c)
 {
-	if (texture.texture)
-		mlx_destroy_image(mlx_ptr, texture.texture);
-}
+	int		i;
+	int		count;
 
-void	clear_memory(t_game *game)
-{
-	ft_strdel(&game->tmp_map);
-	if (game->tmp_mlx)
+	i = -1;
+	count = 0;
+	while (str[++i])
 	{
-		mlx_destroy_display(game->tmp_mlx);
-		free(game->tmp_mlx);
+		if (str[i] == c)
+			count++;
 	}
-	if (game->map != NULL)
-		ft_split_del(game->map);
-	free(game);
+	return (count);
 }

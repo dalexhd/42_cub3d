@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:41 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/10 16:06:42 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/12 01:33:09 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_bool	has_screen(t_game *game)
 
 t_bool	validate_screen(t_game *game, char *width, char *height)
 {
-	if (ft_strlen(height) < 1 || ft_strlen(width) < 1)
+	if ((!height || ft_strlen(height) < 1) || (!width || ft_strlen(width) < 1))
 	{
 		ft_error("Invalid width/height length!", false);
 		return (FALSE);
