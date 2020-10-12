@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_countchars.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 15:15:10 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/10 21:25:11 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/11 19:57:22 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/11 19:59:40 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../includes/libft.h"
 
-void		ft_error(char *s, t_bool force, ...)
+size_t		ft_countchars(char const *str, char c)
 {
-	va_list args;
+	int		i;
+	int		count;
 
-	va_start(args, force);
-	ft_printf(C_RED"❌ ");
-	ft_vprintf(s, &args);
-	ft_printf(C_X"\n");
-	va_end(args);
-	if (force)
-		exit(EXIT_FAILURE);
+	i = -1;
+	count = 0;
+	while (str[++i])
+	{
+		if (str[i] == c)
+			count++;
+	}
+	return (count);
 }

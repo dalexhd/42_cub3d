@@ -23,7 +23,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install necessary linux packages
-        run: sudo apt install -y libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev valgrind
+        run: |
+          sudo apt install -y libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev valgrind xvfb
+          export DISPLAY=:99.0
+          Xvfb -ac :99 -screen 0 4096x2304x16 > /dev/null 2>&1 &
 
       # Verify cub3d make targets
       - name: Execute make help command
@@ -36,9 +39,19 @@ jobs:
         run: make && make fclean
       - name: Execute make re command
         run: make && make re
+      # Clone tester
+      - name: Clone tester
+        run: git clone https://github.com/dalexhd/cub3d-tester.git
       # Check cub3d leaks
-      - name: Check for leaks
-        run: make leak
-      # Run cub3d tests
-      - name: Run cub3d tests
-        run: make test
+      - name: Run cub3D tests
+        run: xvfb-run --auto-servernum --server-args="-screen 0 4096x2304x16" make test
+        env:
+          TERM: xterm
+          DISPLAY: :99.0
+      # Upload test log
+      - name: Upload testing log
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: test-log
+          path: cub3d-tester/report.log

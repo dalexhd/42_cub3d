@@ -6,14 +6,14 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/08 21:40:28 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/12 19:04:36 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #-fsanitize=address
 NAME				=	cub3d.a
 BONUS				=	cub3D_bonus
-OUTPUT				=	CUB3D
+OUTPUT				=	cub3D
 PID					=	.pid
 
 CC					=	@gcc
@@ -50,12 +50,18 @@ else
 endif
 
 # Mandatory part
-UTILS				=	utils/parse/map.c			utils/parse/screen.c		utils/parse/textures.c			utils/parse/colors.c				\
-						utils/validate/colors.c		utils/validate/map.c		utils/validate/screen.c			utils/validate/textures.c			\
+
+UTILS				=	utils/memory.c
+
+UTILS_PARSE			=	utils/parse/file.c				utils/parse/map.c			utils/parse/colors.c			utils/parse/textures.c
+
+UTILS_VALIDATE		=	utils/validate/file.c			utils/validate/map.c		utils/validate/screen.c			utils/validate/textures.c		\
+						utils/validate/colors.c
 
 SRCS				=	controls.c						parse.c						validate.c						window.c						\
 						init.c
-SOURCES				=	$(SRCS) $(UTILS)
+
+SOURCES				=	$(SRCS) $(UTILS) $(UTILS_PARSE) $(UTILS_VALIDATE)
 
 # Bonus part
 BONUS_UTILS			=
@@ -63,7 +69,12 @@ BONUS_SRCS			=
 BONUS_SOURCES		=	$(BONUS_SRCS) $(BONUS_UTILS)
 
 LEAKS_FLAGS			=	--tool=memcheck --leak-check=full --leak-resolution=high --show-leak-kinds=all --track-origins=yes
-LEAKS_EXE			=	./tools/memory_leak.sh ${OUTPUT} maps/map.cub ${LEAKS_FLAGS}
+
+ifndef MAP
+	LEAKS_EXE		=	./tools/memory_leak.sh ${OUTPUT} maps/map.cub ${LEAKS_FLAGS}
+else
+	LEAKS_EXE		=	./tools/memory_leak.sh ${OUTPUT} $(MAP) ${LEAKS_FLAGS}
+endif
 NORME				=	$(addsuffix *.h,$(HEADER_DIR)) \
 						$(addprefix $(SRC_DIR),$(SOURCES)) \
 						$(addprefix $(BONUS_DIR),$(BONUS_SOURCES)) \
@@ -186,7 +197,7 @@ normi:		## Check norminette.
 				@norminette $(NORME) | sed "s/Norme/$(NORM_COLOR_T)➤  $(NORM_COLOR)Norme/g;s/Warning/\t $(NORM_COLOR_WAR)Warning/g;s/Error/\t🚨 $(NORM_COLOR_ERR)Error/g"; \
 			fi
 
-leak:		## Run memory leak testa.
+leak:		## Run memory leak for valid cub file.
 			@if [ $(shell $(LEAKS_EXE) && cat valgrind_out | grep "definitely lost:" | cut -d : -f 2 | cut -d b  -f 1 | tr -d " " | tr -d ",") ]; then\
 				echo ${BOLD}${UND}${R}🚨 Memory leaks detected${X};\
 				if [ $(USER) = "runner" ]; then\
@@ -197,11 +208,11 @@ leak:		## Run memory leak testa.
 				fi;\
 				exit 1;\
 			else\
-				echo ${BOLD}${UND}${G}No memory leaks${X};\
+				echo ☕ ${BOLD}${UND}${G}No memory leaks detected${X} ☕;\
+				echo ${CYAN};cat valgrind_out | grep -A4 "HEAP SUMMARY:" | cut -d = -f 5 | cut -c 2-;\
 			fi
 
 ##@ Compilation
-
 bonus:		## Make bonus
 			@make fclean
 			@make $(BONUS)
@@ -211,9 +222,11 @@ re:			## Call fclean => all
 			@make all
 
 ##@ Testing
+testback:		## Make cub3d test
+			cd ./tools/tester && ./test_map_valid_function.sh -f
 
 test:		## Make cub3d test
-			./tools/tester/test_map_valid_function.sh $(OUTPUT)
+			cd ./cub3d-tester && ./destroyer.sh --threads 5 --show-output
 
 ##@ Help
 help:		## View all available commands.

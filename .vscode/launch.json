@@ -8,9 +8,9 @@
 			"name": "gcc - Build and debug active file",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceRoot}/CUB3D",
+			"program": "${workspaceRoot}/cub3D",
 			"args": [
-				"./data/maps/map.cub"
+				"./maps/map.cub"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceRoot}",

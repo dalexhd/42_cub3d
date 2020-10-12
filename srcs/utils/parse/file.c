@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 15:15:10 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/10 21:25:11 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/10 19:50:27 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/10 20:20:55 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../includes/cube3d.h"
 
-void		ft_error(char *s, t_bool force, ...)
+int		parse_file(t_game *game, char *file)
 {
-	va_list args;
+	int	fd;
 
-	va_start(args, force);
-	ft_printf(C_RED"❌ ");
-	ft_vprintf(s, &args);
-	ft_printf(C_X"\n");
-	va_end(args);
-	if (force)
+	if (!valid_cubfile(file))
+	{
+		clear_memory(game);
 		exit(EXIT_FAILURE);
+	}
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		clear_memory(game);
+		ft_error("Error opening \"%s\" file!", true, file);
+	}
+	return (fd);
 }

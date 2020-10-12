@@ -6,8 +6,14 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/07 17:29:22 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/09 13:55:24 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
+
+t_bool	validate_map(char *tmp_map)
+{
+	(void)tmp_map;
+	return (TRUE);
+}

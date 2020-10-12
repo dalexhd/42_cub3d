@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 15:43:53 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/08 19:23:45 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/11 19:58:31 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ STR					= 	ft_strcat.c				ft_strncat.c			ft_strstr.c				ft_strchr.c				\
 						ft_strcmp.c				ft_strnstr.c			ft_split.c				ft_strrchr.c			\
 						ft_strtrim.c			ft_substr.c				ft_tolower.c			ft_toupper.c			\
 						ft_strjoin_free.c		ft_strto.c				ft_putchar.c			ft_putstr.c				\
-						ft_strevery.c
+						ft_strevery.c			ft_putchar_fd.c			ft_strendswith.c		ft_countchars.c
 
 UTILS				=	ft_isalnum.c			ft_isalpha.c			ft_isascii.c			ft_isdigit.c			\
 						ft_isspace.c			ft_isprint.c			ft_numlen.c				ft_max.c				\
@@ -59,7 +59,8 @@ BONUS				=	ft_lstnew_bonus.c		ft_lstadd_front_bonus.c	ft_lstsize_bonus.c		ft_lst
 
 FT_PRINTF			=	ft_printf/ft_printf.c	ft_printf/struct.c		ft_printf/check.c		ft_printf/do.c			\
 						ft_printf/do_numbers.c	ft_printf/debug.c		ft_printf/is.c			ft_printf/do_strings.c	\
-						ft_printf/do_address.c	ft_printf/do_hex.c		ft_printf/do_octal.c	ft_printf/misc.c
+						ft_printf/do_address.c	ft_printf/do_hex.c		ft_printf/do_octal.c	ft_printf/misc.c		\
+						ft_printf/ft_vprintf.c	ft_printf/ft_vfprintf.c	ft_printf/ft_fprintf.c
 
 FT_ALERT			=	ft_alert/ft_error.c		ft_alert/ft_warn.c
 

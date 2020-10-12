@@ -6,15 +6,15 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/08 22:17:40 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/12 01:32:46 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-t_player		init_player(void)
+static	t_player	init_player(void)
 {
-	t_player	player;
+	t_player		player;
 
 	player = (t_player){
 		.deg = 0,
@@ -26,7 +26,7 @@ t_player		init_player(void)
 	return (player);
 }
 
-t_textures		init_textures(void)
+static	t_textures	init_textures(void)
 {
 	t_textures	textures;
 
@@ -40,27 +40,55 @@ t_textures		init_textures(void)
 	return (textures);
 }
 
-t_game			*init_structure(void)
+static	t_colors	init_colors(void)
 {
-	t_game		*game;
+	t_colors		colors;
+
+	colors = (t_colors){
+		.floor.r = -1, .floor.g = -1, .floor.b = -1,
+		.ceiling.r = -1, .ceiling.g = -1, .ceiling.b = -1
+	};
+	return (colors);
+}
+
+static	t_game		*init_structure(void)
+{
+	t_game			*game;
 
 	game = (t_game *)malloc(sizeof(t_game));
+	game->width = -1;
+	game->height = -1;
 	game->textures = init_textures();
+	game->colors = init_colors();
+	game->tmp_map = ft_strdup("");
 	game->minimap = 1;
 	game->player = (t_player){.x = -0., .y = -0.};
 	game->dir = (t_direction){.x = -1., .y = 0.};
 	game->plane = (t_direction){.x = 0, .y = 1};
+	game->height = -1;
+	game->width = -1;
 	game->player = init_player();
+	game->valid = (t_valid){.screen = true, .textures = true,
+		.colors = true, .map = true};
 	return (game);
 }
 
-t_game			*init_game(int argc, char **argv)
+t_game				*init_game(int argc, char **argv)
 {
-	t_game		*game;
+	t_game			*game;
 
 	if (argc < 2 || argc > 3)
 		ft_error("Please check your arguments", true);
 	game = init_structure();
-	parse_file(game, argv[1]);
+	parse_game(game, argv[1]);
+	if (!valid_cub(game))
+		exit(EXIT_FAILURE);
+	fill_map(game);
+	if (!valid_cub_struct(game))
+	{
+		ft_error("There's something missing in your cub file!", false);
+		clear_memory(game);
+		exit(EXIT_FAILURE);
+	}
 	return (game);
 }

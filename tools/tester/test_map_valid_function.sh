@@ -1,11 +1,6 @@
 #! /bin/bash
 
-# Just the first time.
-exit 0;
-
-#../cub3D ./maps/map_no_texture.cub
-
-CUB3D=./$1
+CUB3D=../../cub3D
 MAPS_FOLDER=./maps/
 
 MAIN_BG="\033[46;30m"
@@ -27,7 +22,7 @@ CLEAR_COLOR="\033[m"
 TEST_R_COUNT=8
 TEST_W_COUNT=7
 TEST_FC_COUNT=13
-TEST_MAP_COUNT=27
+TEST_MAP_COUNT=0
 TEST_I_COUNT=7
 
 if [ $# -gt 1 ]
@@ -57,7 +52,7 @@ fi
 
 echo -e "\n${ALERT_BG}There are not valid maps for test.${CLEAR_COLOR} During testing, Your program should be shut down ${ALERT_BG}safely${CLEAR_COLOR}.\n"
 echo -e "If your program makes a window and put any image, your program is not handilng that map exception.\n"
-echo -e "If your program returns unexpected error messages, such as segfault, abort, etc..,\n" 
+echo -e "If your program returns unexpected error messages, such as segfault, abort, etc..,\n"
 echo -e "your program is not handilng that map exception too.\n"
 echo -e "So ${ALERT_BG}please check return messages of your program! :)${CLEAR_COLOR}\n\n"
 
@@ -85,7 +80,7 @@ do
 	TEST_MAP=test_R${i}.cub
 	echo -e "\n\t\t${MAIN_BG}${TEST_MAP}${CLEAR_COLOR}\n"
 	${CUB3D} ${MAPS_FOLDER}${TEST_MAP}
-	if [ $? ]
+	if [ $? -eq 1 ]
 	then
 		echo -e "\n${SUCCESS_BG}-->PASS${CLEAR_COLOR}"
 	else
@@ -98,7 +93,7 @@ do
 	TEST_MAP=test_W${i}.cub
 	echo -e "\n\t\t${MAIN_BG}${TEST_MAP}${CLEAR_COLOR}\n"
 	${CUB3D} ${MAPS_FOLDER}${TEST_MAP}
-	if [ $? ]
+	if [ $? -eq 1 ]
 	then
 		echo -e "\n${SUCCESS_BG}-->PASS${CLEAR_COLOR}"
 	else
@@ -111,7 +106,7 @@ do
 	TEST_MAP=test_FC${i}.cub
 	echo -e "\n\t\t${MAIN_BG}${TEST_MAP}${CLEAR_COLOR}\n"
 	${CUB3D} ${MAPS_FOLDER}${TEST_MAP}
-	if [ $? ]
+	if [ $? -eq 1 ]
 	then
 		echo -e "\n${SUCCESS_BG}-->PASS${CLEAR_COLOR}"
 	else
@@ -124,7 +119,7 @@ do
 	TEST_MAP=test_MAP${i}.cub
 	echo -e "\n\t\t${MAIN_BG}${TEST_MAP}${CLEAR_COLOR}\n"
 	${CUB3D} ${MAPS_FOLDER}${TEST_MAP}
-	if [ $? ]
+	if [ $? -eq 1 ]
 	then
 		echo -e "\n${SUCCESS_BG}-->PASS${CLEAR_COLOR}"
 	else
@@ -137,7 +132,7 @@ do
 	TEST_MAP=test_I${i}.cub
 	echo -e "\n\t\t${MAIN_BG}${TEST_MAP}${CLEAR_COLOR}\n"
 	${CUB3D} ${MAPS_FOLDER}${TEST_MAP}
-	if [ $? ]
+	if [ $? -eq 1 ]
 	then
 		echo -e "\n${SUCCESS_BG}-->PASS${CLEAR_COLOR}"
 	else

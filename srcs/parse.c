@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:14 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/08 22:20:54 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/12 02:58:59 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,49 +18,38 @@ void		parse_screen(t_game *game, char *line)
 
 	if (!ft_strncmp("R ", line, 2) && (size = ft_split(line, ' ')))
 	{
-		game->width = ft_atoi(size[1]);
-		game->height = ft_atoi(size[2]);
-		ft_split_del(size);
+		mlx_get_screen_size(game->tmp_mlx, &game->width, &game->height);
+		if (validate_screen(game, size[1], size[2]))
+		{
+			game->width = ft_atoi(size[1]);
+			game->height = ft_atoi(size[2]);
+			ft_split_del(size);
+		}
+		else
+			invalid_screen(game, size);
 	}
 }
 
-void		parse_textures(t_game *game, char *line)
-{
-	char	**path;
-
-	path = NULL;
-	if (ft_strnstr(line, "NO ", 3) && (path = ft_split(line, ' ')))
-		game->textures.north.path = path[1];
-	else if (ft_strnstr(line, "SO ", 3) && (path = ft_split(line, ' ')))
-		game->textures.south.path = path[1];
-	else if (ft_strnstr(line, "WE ", 3) && (path = ft_split(line, ' ')))
-		game->textures.west.path = path[1];
-	else if (ft_strnstr(line, "EA ", 3) && (path = ft_split(line, ' ')))
-		game->textures.east.path = path[1];
-	else if (ft_strnstr(line, "S ", 2) && (path = ft_split(line, ' ')))
-		game->textures.sprite.path = path[1];
-	if (path != NULL)
-		ft_split_del(path);
-}
-
-void		parse_file(t_game *game, char *file)
+void		parse_game(t_game *game, char *file)
 {
 	char	*line;
+	char	*trimmed;
 	int		fd;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		free(game);
-		ft_error("Error opening cub file!", TRUE);
-	}
-	line = NULL;
+	fd = parse_file(game, file);
+	game->tmp_mlx = mlx_init();
 	while (get_next_line(fd, &line))
 	{
-		parse_screen(game, line);
-		parse_textures(game, line);
-		parse_floor(game, line);
-		parse_ceiling(game, line);
+		trimmed = ft_strtrim(line, " ");
+		if (valid_cub(game))
+		{
+			parse_screen(game, trimmed);
+			parse_textures(game, trimmed);
+			parse_floor(game, trimmed);
+			parse_ceiling(game, trimmed);
+			parse_map(game, trimmed);
+		}
+		free(trimmed);
 		free(line);
 	}
 	free(line);

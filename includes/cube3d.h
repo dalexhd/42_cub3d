@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/08 22:16:34 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/12 20:18:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,150 +50,185 @@
 */
 # include "internal.h"
 
-typedef struct	s_img
+typedef struct		s_img
 {
-	void		*img_ptr;
-	int			*data;
-	int			width;
-	int			height;
-	int			size_l;
-	int			bpp;
-	int			endian;
-}				t_img;
+	void			*img_ptr;
+	int				*data;
+	int				width;
+	int				height;
+	int				size_l;
+	int				bpp;
+	int				endian;
+}					t_img;
 
-typedef struct	s_texture
+typedef struct		s_texture
 {
-	char		*path;
-	int			*ptr;
-	void		*texture;
-	int			start;
-	int			end;
-	int			width;
-	int			height;
-	int			size_l;
-	int			bpp;
-	int			endian;
-}				t_texture;
+	char			*path;
+	int				*ptr;
+	void			*texture;
+	char			*ext;
+	int				start;
+	int				end;
+	int				width;
+	int				height;
+	int				size_l;
+	int				bpp;
+	int				endian;
+}					t_texture;
 
-typedef struct	s_textures
+typedef struct		s_textures
 {
-	t_texture	north;
-	t_texture	south;
-	t_texture	east;
-	t_texture	west;
-	t_texture	sprite;
-	t_texture	floor;
-	t_texture	ceiling;
-}				t_textures;
+	t_texture		north;
+	t_texture		south;
+	t_texture		east;
+	t_texture		west;
+	t_texture		sprite;
+	t_texture		floor;
+	t_texture		ceiling;
+}					t_textures;
 
-typedef struct	s_move
+typedef struct		s_move
 {
-	t_bool		forward;
-	t_bool		backward;
-	t_bool		right;
-	t_bool		left;
-}				t_move;
+	t_bool			forward;
+	t_bool			backward;
+	t_bool			right;
+	t_bool			left;
+}					t_move;
 
-typedef struct	s_rotate
+typedef struct		s_rotate
 {
-	t_bool		right;
-	t_bool		left;
-}				t_rotate;
+	t_bool			right;
+	t_bool			left;
+}					t_rotate;
 
-typedef struct	s_player
+typedef struct		s_player
 {
-	double		x;
-	double		y;
-	double		deg;
-	double		speed;
-	double		rotate_speed;
-	t_move		moving;
-	t_rotate	rotating;
-	t_bool		shifting;
-}				t_player;
+	double			x;
+	double			y;
+	double			deg;
+	double			speed;
+	double			rotate_speed;
+	t_move			moving;
+	t_rotate		rotating;
+	t_bool			shifting;
+}					t_player;
 
-typedef struct	s_color
+typedef struct		s_color
 {
-	int			r;
-	int			g;
-	int			b;
-}				t_color;
+	int				r;
+	int				g;
+	int				b;
+}					t_color;
 
-typedef struct	s_colors
+typedef struct		s_colors
 {
-	t_color		floor;
-	t_color		ceiling;
-}				t_colors;
+	t_color			floor;
+	t_color			ceiling;
+}					t_colors;
 
-typedef struct	s_direction
+typedef struct		s_direction
 {
-	double		x;
-	double		y;
-}				t_direction;
+	double			x;
+	double			y;
+}					t_direction;
 
-typedef struct	s_ivector
+typedef struct		s_ivector
 {
-	int			x;
-	int			y;
-}				t_ivector;
+	int				x;
+	int				y;
+}					t_ivector;
 
-typedef struct	s_ray
+typedef struct		s_ray
 {
-	t_direction	dir;
-	t_direction	side;
-	t_direction	delta;
-	t_ivector	step;
-	t_ivector	map;
-	t_bool		is_north;
-	t_texture	texture;
-	int			start;
-	int			end;
-	int			height;
-	double		shade;
-	double		dist;
-	int			wall_direction;
-	int			texture_x;
-	double		texture_step;
-	double		texture_pos;
-}				t_ray;
+	t_direction		dir;
+	t_direction		side;
+	t_direction		delta;
+	t_ivector		step;
+	t_ivector		map;
+	t_bool			is_north;
+	t_texture		texture;
+	int				start;
+	int				end;
+	int				height;
+	double			shade;
+	double			dist;
+	int				wall_direction;
+	int				texture_x;
+	double			texture_step;
+	double			texture_pos;
+}					t_ray;
 
-typedef struct	s_game
+typedef struct		s_valid
 {
-	void		*mlx;
-	void		*tmp_mlx;
-	char		*tmp_map;
-	void		*win;
-	int			width;
-	int			height;
-	int			x;
-	char		**map;
-	int			minimap;
-	t_img		img;
-	t_ray		*rays;
-	t_colors	colors;
-	t_player	player;
-	t_direction	dir;
-	t_textures	textures;
-	t_direction	plane;
-}				t_game;
+	t_bool			screen;
+	t_bool			textures;
+	t_bool			colors;
+	t_bool			map;
+}					t_valid;
 
-t_game			*load_game(int argc, char **argv);
-void			parse_file(t_game *game, char *file);
+typedef struct		s_game
+{
+	void			*mlx;
+	void			*tmp_mlx;
+	char			*tmp_map;
+	void			*win;
+	int				width;
+	int				height;
+	int				x;
+	char			**map;
+	int				minimap;
+	t_img			img;
+	t_ray			*rays;
+	t_colors		colors;
+	t_player		player;
+	t_direction		dir;
+	t_textures		textures;
+	t_direction		plane;
+	t_valid			valid;
+}					t_game;
+
+t_game				*load_game(int argc, char **argv);
+void				parse_game(t_game *game, char *file);
 
 /*
 ** Init functions.
 */
-t_player		init_player(void);
-t_textures		init_textures(void);
-t_game			*init_structure(void);
-t_game			*init_game(int argc, char **argv);
+t_game				*init_game(int argc, char **argv);
 /*
 ** Validate functions.
 */
-t_bool			validate_color(char *color);
+t_bool				valid_cubfile(char *file);
+t_bool				validate_color(char *color);
+t_bool				has_colors(t_game *game);
+t_bool				has_floor(t_game *game);
+t_bool				has_ceiling(t_game *game);
+t_bool				has_screen(t_game *game);
+t_bool				has_textures(t_game *game);
+t_bool				validate_map(char *tmp_map);
+t_bool				validate_screen(t_game *game, char *height, char *width);
+void				invalid_screen(t_game *game, char **size);
+t_bool				valid_cub(t_game *game);
+t_bool				validate_texture(t_game *game, char *path, char *name);
+t_bool				valid_cub_struct(t_game *game);
 /*
 ** Parse functions.
 */
-void			parse_floor(t_game *game, char *line);
-void			parse_ceiling(t_game *game, char *line);
+void				parse(t_game *game, char *file);
+int					parse_file(t_game *game, char *file);
+void				parse_floor(t_game *game, char *line);
+void				parse_ceiling(t_game *game, char *line);
+void				parse_map(t_game *game, char *line);
+void				parse_textures(t_game *game, char *line);
+void				fill_map(t_game *game);
+/*
+** Clear the memory of the game
+** @param  {t_game*} game : The game instance
+*/
+void				clear_memory(t_game *game);
+/*
+** Clear an especific texture
+** @param  {t_texture} texture : The texture to clear instance
+** @param  {void*} mlx_ptr     : The mlx pointer
+*/
+void				clear_texture(t_texture texture, void *mlx_ptr);
 #endif
