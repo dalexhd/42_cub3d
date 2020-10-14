@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 22:36:48 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/13 11:00:37 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/13 12:45:34 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/13 12:50:43 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+t_llong	ft_atoll(const char *str)
 {
-	size_t i;
+	long long int			i;
+	int						sign;
+	unsigned long long		res;
 
 	i = 0;
-	while (i < len && src[i] != '\0')
+	res = 0;
+	sign = 1;
+	while (ft_isspace(str[i]))
+		++i;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		dst[i] = src[i];
+		if (str[i] == '-')
+			sign = 0;
 		i++;
 	}
-	while (i < len)
-		dst[i++] = '\0';
-	return (dst);
+	while (ft_isdigit(str[i]))
+	{
+		res = res * 10 + (str[i] - '0');
+		i++;
+	}
+	if (res > 9223372036854775807LL)
+		return (sign == 0 ? 0 : -1);
+	return (sign == 1 ? res : -res);
 }

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:11 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/10 15:45:02 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/13 20:02:32 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void		parse_map(t_game *game, char *line)
 {
 	char	*tmp;
 
-	if (has_screen(game) && has_colors(game) &&
-	has_textures(game) && is_map_line(line))
+	if (is_map_line(line))
 	{
 		tmp = game->tmp_map;
 		game->tmp_map = ft_strjoin(game->tmp_map, ft_strcat(line, "\n"));

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 19:50:27 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/10 20:20:55 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/13 17:04:53 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		parse_file(t_game *game, char *file)
 	if (fd < 0)
 	{
 		clear_memory(game);
-		ft_error("Error opening \"%s\" file!", true, file);
+		ft_error(ERR_FILE_OP, true, file);
 	}
 	return (fd);
 }

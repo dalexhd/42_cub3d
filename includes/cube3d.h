@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/12 20:18:47 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/13 18:48:20 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,12 @@ typedef struct		s_valid
 	t_bool			map;
 }					t_valid;
 
+typedef struct		s_tmp
+{
+	t_bool			width;
+	t_bool			height;
+}					t_tmp;
+
 typedef struct		s_game
 {
 	void			*mlx;
@@ -185,6 +191,7 @@ typedef struct		s_game
 	t_textures		textures;
 	t_direction		plane;
 	t_valid			valid;
+	t_tmp			tmp;
 }					t_game;
 
 t_game				*load_game(int argc, char **argv);
@@ -198,12 +205,13 @@ t_game				*init_game(int argc, char **argv);
 ** Validate functions.
 */
 t_bool				valid_cubfile(char *file);
-t_bool				validate_color(char *color);
+t_bool				validate_color(t_game *game, char *color);
 t_bool				has_colors(t_game *game);
 t_bool				has_floor(t_game *game);
 t_bool				has_ceiling(t_game *game);
 t_bool				has_screen(t_game *game);
 t_bool				has_textures(t_game *game);
+t_bool				has_map(t_game *game);
 t_bool				validate_map(char *tmp_map);
 t_bool				validate_screen(t_game *game, char *height, char *width);
 void				invalid_screen(t_game *game, char **size);

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 16:11:17 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/03 11:29:36 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/13 17:07:22 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,17 @@
 # define WEST 4
 
 /*
-** Definimos los errores
+** Define errors
 */
-# define MALLOC_ERROR "malloc() error: failed to allocate bytes!"
+# define ERR_MALLOC "malloc() error: failed to allocate bytes!"
+# define ERR_ARGV_CHECK "Please check your arguments"
+# define ERR_CUB_S_MISS "There's something missing in your cub file!"
+# define ERR_FILE_OP "Error opening \"%s\" file!"
+/*
+** Define Validation errors
+*/
+# define ERR_FL_DEF "Floor already defined!"
+# define ERR_CE_DEF "Ceiling already defined!"
+# define ERR_AFTER_MAP "%s can't be set after map!"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:20:18 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/11 16:04:48 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/14 11:00:48 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static	int		texture_file(t_game *game, char *file, char *name)
 	if (!ft_strendswith(file, ".xpm") && !ft_strendswith(file, ".png"))
 	{
 		ft_error("Texture %s must have .xpm or .png format!", false, name);
-		clear_memory(game);
 		free(file);
 		game->valid.textures = false;
 		return (false);
@@ -48,7 +47,6 @@ static	int		texture_file(t_game *game, char *file, char *name)
 	if (fd < 0)
 	{
 		ft_error("Error opening \"%s\" texture!", false, file);
-		clear_memory(game);
 		free(file);
 		game->valid.textures = false;
 		return (false);
@@ -56,11 +54,23 @@ static	int		texture_file(t_game *game, char *file, char *name)
 	return (fd);
 }
 
+static	t_bool	invalid_texture(t_game *game, char *texture_path)
+{
+	game->valid.textures = false;
+	free(texture_path);
+	return (false);
+}
+
 t_bool			validate_texture(t_game *game, char *texture_path, char *name)
 {
 	int			fd;
 	t_texture	tmp_texture;
 
+	if (has_map(game))
+	{
+		ft_error("Texture "ERR_AFTER_MAP, false, texture_path);
+		return (invalid_texture(game, texture_path));
+	}
 	if (!(fd = texture_file(game, texture_path, name)))
 		return (false);
 	close(fd);
@@ -68,12 +78,10 @@ t_bool			validate_texture(t_game *game, char *texture_path, char *name)
 	tmp_texture = load_texture(game->tmp_mlx, tmp_texture);
 	if (!tmp_texture.texture)
 	{
-		ft_error("ERR: Invalid \"%s\" texture!", false);
+		ft_error("Invalid \"%s\" texture!", false);
 		clear_texture(tmp_texture, game->tmp_mlx);
 		clear_memory(game);
-		free(texture_path);
-		game->valid.textures = false;
-		return (false);
+		return (invalid_texture(game, texture_path));
 	}
 	clear_texture(tmp_texture, game->tmp_mlx);
 	free(texture_path);
@@ -85,5 +93,6 @@ t_bool			has_textures(t_game *game)
 	return (game->textures.north.path &&
 	game->textures.south.path &&
 	game->textures.west.path &&
-	game->textures.east.path);
+	game->textures.east.path &&
+	game->textures.sprite.path);
 }
