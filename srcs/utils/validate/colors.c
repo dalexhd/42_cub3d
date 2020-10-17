@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:21 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/13 17:49:01 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 12:00:16 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ t_bool	has_ceiling(t_game *game)
 	game->colors.ceiling.b != -1);
 }
 
-t_bool	validate_color(t_game *game, char *color)
+t_bool	validate_color(t_game *game, char *color, char *line)
 {
 	int	num;
 
 	if (has_map(game))
 	{
-		ft_error("Color "ERR_AFTER_MAP, false, color);
-		return (FALSE);
+		ft_error("Color "ERR_AFTER_MAP, false, line);
+		return (false);
 	}
 	if (color == NULL || ft_strlen(color) < 1)
 	{

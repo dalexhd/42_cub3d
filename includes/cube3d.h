@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/13 18:48:20 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 12:02:59 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ typedef struct		s_tmp
 {
 	t_bool			width;
 	t_bool			height;
+	t_bool			safe_line;
 }					t_tmp;
 
 typedef struct		s_game
@@ -182,7 +183,9 @@ typedef struct		s_game
 	int				height;
 	int				x;
 	char			**map;
+	char			**verify_map;
 	int				minimap;
+	char			spawn;
 	t_img			img;
 	t_ray			*rays;
 	t_colors		colors;
@@ -205,18 +208,21 @@ t_game				*init_game(int argc, char **argv);
 ** Validate functions.
 */
 t_bool				valid_cubfile(char *file);
-t_bool				validate_color(t_game *game, char *color);
+t_bool				validate_color(t_game *game, char *color, char *line);
 t_bool				has_colors(t_game *game);
 t_bool				has_floor(t_game *game);
 t_bool				has_ceiling(t_game *game);
 t_bool				has_screen(t_game *game);
 t_bool				has_textures(t_game *game);
 t_bool				has_map(t_game *game);
-t_bool				validate_map(char *tmp_map);
-t_bool				validate_screen(t_game *game, char *height, char *width);
+t_bool				validate_map(t_game *game);
+t_bool				validate_map_line(t_game *game, char *line, size_t num);
+t_bool				validate_screen(t_game *game, char *res, char *height,
+	char *width);
 void				invalid_screen(t_game *game, char **size);
 t_bool				valid_cub(t_game *game);
-t_bool				validate_texture(t_game *game, char *path, char *name);
+t_bool				validate_texture(t_game *game, char *path,
+	char *name, char *de);
 t_bool				valid_cub_struct(t_game *game);
 /*
 ** Parse functions.
@@ -228,6 +234,7 @@ void				parse_ceiling(t_game *game, char *line);
 void				parse_map(t_game *game, char *line);
 void				parse_textures(t_game *game, char *line);
 void				fill_map(t_game *game);
+t_texture			load_texture(void *mlx_ptr, char *path);
 /*
 ** Clear the memory of the game
 ** @param  {t_game*} game : The game instance
@@ -237,6 +244,8 @@ void				clear_memory(t_game *game);
 ** Clear an especific texture
 ** @param  {t_texture} texture : The texture to clear instance
 ** @param  {void*} mlx_ptr     : The mlx pointer
+** @param  {t_bool*} delpath   : Delete the path painter
 */
-void				clear_texture(t_texture texture, void *mlx_ptr);
+void				clear_texture(t_texture texture, void *mlx_ptr,
+	t_bool delpath);
 #endif

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 17:59:32 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/13 18:35:47 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/14 12:55:57 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@ size_t	ft_countnumbers(char const *str)
 
 	i = 0;
 	count = 0;
-	while (str[i])
+	if (str != NULL)
 	{
-		if (ft_isdigit(str[i]) && !ft_isdigit(str[i + 1]))
+		while (str[i])
 		{
-			count++;
+			if (ft_isdigit(str[i]) && str[i + 1] && !ft_isdigit(str[i + 1]))
+			{
+				count++;
+			}
+			i++;
 		}
-		i++;
 	}
 	return (count);
 }

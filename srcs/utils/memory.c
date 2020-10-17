@@ -6,25 +6,37 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 10:57:57 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/11 19:16:10 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 11:34:58 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-void	clear_texture(t_texture texture, void *mlx_ptr)
+void	clear_texture(t_texture texture, void *mlx_ptr, t_bool delpath)
 {
 	if (texture.texture)
 		mlx_destroy_image(mlx_ptr, texture.texture);
+	if (delpath)
+		ft_strdel(&texture.path);
+}
+
+void	clear_textures(t_game *game, void *mlx_ptr)
+{
+	clear_texture(game->textures.north, mlx_ptr, true);
+	clear_texture(game->textures.east, mlx_ptr, true);
+	clear_texture(game->textures.south, mlx_ptr, true);
+	clear_texture(game->textures.west, mlx_ptr, true);
+	clear_texture(game->textures.sprite, mlx_ptr, true);
 }
 
 void	clear_memory(t_game *game)
 {
 	ft_strdel(&game->tmp_map);
-	if (game->tmp_mlx)
+	clear_textures(game, game->mlx);
+	if (game->mlx)
 	{
-		mlx_destroy_display(game->tmp_mlx);
-		free(game->tmp_mlx);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
 	}
 	if (game->map != NULL)
 		ft_split_del(game->map);

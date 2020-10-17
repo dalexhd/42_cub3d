@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 16:11:17 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/13 17:07:22 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 12:22:40 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@
 # define ERR_FL_DEF "Floor already defined!"
 # define ERR_CE_DEF "Ceiling already defined!"
 # define ERR_AFTER_MAP "%s can't be set after map!"
+# define ERR_TEX_LOADED "%s defined multiple times!"
+# define ERR_MAP_MISSING "Map could not be found at the .cub file!"
 
 #endif

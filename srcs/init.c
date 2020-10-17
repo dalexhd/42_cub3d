@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/13 20:02:18 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 12:35:26 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,10 @@ t_game				*init_game(int argc, char **argv)
 		clear_memory(game);
 		exit(EXIT_FAILURE);
 	}
-	fill_map(game);
 	if (!valid_cub_struct(game))
 	{
-		ft_error(ERR_CUB_S_MISS, false);
 		clear_memory(game);
-		exit(EXIT_FAILURE);
+		ft_error(ERR_CUB_S_MISS, true);
 	}
 	return (game);
 }
