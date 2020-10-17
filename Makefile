@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/13 20:03:00 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/17 12:49:24 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ endif
 
 # Mandatory part
 
-UTILS				=	utils/memory.c
+UTILS				=	utils/memory.c					utils/game.c				utils/player.c
 
 UTILS_PARSE			=	utils/parse/file.c				utils/parse/map.c			utils/parse/colors.c			utils/parse/textures.c
 

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 12:02:59 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 13:07:50 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,26 @@ void				parse_game(t_game *game, char *file);
 /*
 ** Init functions.
 */
-t_game				*init_game(int argc, char **argv);
+void				init_game(int argc, char **argv);
+/*
+** Window functions.
+*/
+void				init_window(t_game *game);
+int					close_window(t_game *game);
+/*
+** Controls functions.
+*/
+void				load_controls(t_game *game);
+void				ft_rotate(t_game *game);
+void				ft_move(t_game *game);
+void				ft_shift(t_game *game);
+t_bool				is_moving(t_game *game);
+t_bool				is_rotating(t_game *game);
+t_bool				is_shifting(t_game *game);
+/*
+** Game internal functions.
+*/
+int					main_loop(t_game *game);
 /*
 ** Validate functions.
 */

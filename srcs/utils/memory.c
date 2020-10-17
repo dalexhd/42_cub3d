@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 10:57:57 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 11:34:58 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 13:05:51 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ void	clear_memory(t_game *game)
 {
 	ft_strdel(&game->tmp_map);
 	clear_textures(game, game->mlx);
+	if (game->img.img_ptr)
+		mlx_destroy_image(game->mlx, game->img.img_ptr);
+	if (game->win)
+	{
+		mlx_clear_window(game->mlx, game->win);
+		mlx_destroy_window(game->mlx, game->win);
+	}
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);

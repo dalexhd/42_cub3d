@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 12:35:26 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 13:07:37 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static	t_game		*init_structure(void)
 	return (game);
 }
 
-t_game				*init_game(int argc, char **argv)
+void				init_game(int argc, char **argv)
 {
 	t_game			*game;
 
@@ -89,5 +89,8 @@ t_game				*init_game(int argc, char **argv)
 		clear_memory(game);
 		ft_error(ERR_CUB_S_MISS, true);
 	}
-	return (game);
+	init_window(game);
+	load_controls(game);
+	mlx_loop_hook(game->mlx, &main_loop, game);
+	mlx_loop(game->mlx);
 }

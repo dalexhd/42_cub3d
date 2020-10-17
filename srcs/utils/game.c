@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 17:26:50 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 12:52:41 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/17 12:46:18 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/17 12:51:58 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cube3d.h"
+#include "../../includes/cube3d.h"
 
-int	main(int argc, char **argv)
+int		main_loop(t_game *game)
 {
-	init_game(argc, argv);
-	return (0);
+	if (is_moving(game))
+		ft_move(game);
+	if (is_rotating(game))
+		ft_rotate(game);
+	ft_shift(game);
+	return (TRUE);
 }
