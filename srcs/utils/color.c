@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 13:27:57 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 13:35:41 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/19 18:15:45 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,4 @@ int		rgb_to_hex(int r, int g, int b)
 int		convert_color(t_color color)
 {
 	return (rgb_to_hex(color.r, color.g, color.b));
-}
-
-int		ft_color(int color, double dist)
-{
-	return (ft_shade(color, dist));
-}
-
-int		ft_shade(int color, double dist)
-{
-	if (!SHADES || dist <= 1.)
-		return (color);
-	return (((int)(((0xFF0000 & color) >> 16) / dist) << 16)
-		+ ((int)(((0x00FF00 & color) >> 8) / dist) << 8)
-		+ ((int)((0x0000FF & color) / dist)));
 }
