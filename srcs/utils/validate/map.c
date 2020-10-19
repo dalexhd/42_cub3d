@@ -6,20 +6,20 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 19:55:06 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/19 19:31:21 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-t_bool			has_map(t_game *game)
+t_bool				has_map(t_game *game)
 {
 	return (ft_strlen(game->tmp_map) > 0);
 }
 
-t_ivector		position(t_game *game, int x, int y)
+static	t_ivector	position(t_game *game, int x, int y)
 {
-	t_ivector	pos;
+	t_ivector		pos;
 
 	pos.x = 0;
 	pos.y = 0;
@@ -41,7 +41,7 @@ t_ivector		position(t_game *game, int x, int y)
 	return (pos);
 }
 
-t_bool			check_first_last(t_game *game, int x, int y)
+static	t_bool		check_vertical_edges(t_game *game, int x, int y)
 {
 	while (game->map[y][x] != '\0')
 	{
@@ -69,7 +69,7 @@ t_bool			check_first_last(t_game *game, int x, int y)
 	return (true);
 }
 
-t_bool			flood_map(t_game *game, int x, int y)
+static	t_bool		check_map(t_game *game, int x, int y)
 {
 	if (game->map[y][x] == '1' || game->map[y][x] == 'f')
 		return (true);
@@ -77,10 +77,10 @@ t_bool			flood_map(t_game *game, int x, int y)
 		game->map[y][x] == game->spawn)
 	{
 		game->map[y][x] = 'f';
-		return (flood_map(game, x, y + 1) && flood_map(game, x, y - 1) &&
-		flood_map(game, x + 1, y) && flood_map(game, x - 1, y) &&
-		flood_map(game, x + 1, y + 1) && flood_map(game, x + 1, y - 1) &&
-		flood_map(game, x - 1, y + 1) && flood_map(game, x - 1, y - 1));
+		return (check_map(game, x, y + 1) && check_map(game, x, y - 1) &&
+		check_map(game, x + 1, y) && check_map(game, x - 1, y) &&
+		check_map(game, x + 1, y + 1) && check_map(game, x + 1, y - 1) &&
+		check_map(game, x - 1, y + 1) && check_map(game, x - 1, y - 1));
 	}
 	else
 	{
@@ -89,12 +89,13 @@ t_bool			flood_map(t_game *game, int x, int y)
 	}
 }
 
-t_bool			validate_map(t_game *game)
+t_bool				validate_map(t_game *game)
 {
-	t_ivector	pos;
+	t_ivector		pos;
+
 	game->map = ft_split(game->tmp_map, '\n');
 	pos = position(game, 0, 0);
-	if (!(check_first_last(game, 0, 0) && flood_map(game, pos.x, pos.y)))
+	if (!(check_vertical_edges(game, 0, 0) && check_map(game, pos.x, pos.y)))
 	{
 		game->valid.map = false;
 		return (false);

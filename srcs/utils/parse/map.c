@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:11 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 19:55:13 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/19 19:07:41 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,14 @@ void			fill_map(t_game *game)
 			if (validate_map(game))
 			{
 				game->map = ft_split(game->tmp_map, '\n');
-				y = 0;
-				while (game->map[y])
+				y = -1;
+				while (game->map[++y])
 				{
-					x = 0;
-					while (game->map[y][x])
-					{
+					x = -1;
+					while (game->map[y][++x])
 						if (game->map[y][x] == 'S' || game->map[y][x] == 'N' ||
 							game->map[y][x] == 'W' || game->map[y][x] == 'E')
 							set_player_position(game, x, y);
-						x++;
-					}
-					y++;
 				}
 			}
 		}

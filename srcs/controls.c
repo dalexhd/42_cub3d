@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:00:16 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 18:30:13 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/19 19:13:13 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,22 @@
 
 void	ft_rotate(t_game *game)
 {
-	double	old_dir_x;
-	double	old_plane_x;
-
 	if (game->player.rotating.left)
-	{
-		old_dir_x = game->dir.x;
-		game->dir.x = game->dir.x * cos(-game->player.rotate_speed) - game->dir.y * sin(-game->player.rotate_speed);
-		game->dir.y = old_dir_x * sin(-game->player.rotate_speed) + game->dir.y * cos(-game->player.rotate_speed);
-		old_plane_x = game->plane.x;
-		game->plane.x = game->plane.x * cos(-game->player.rotate_speed) - game->plane.y * sin(-game->player.rotate_speed);
-		game->plane.y = old_plane_x * sin(-game->player.rotate_speed) + game->plane.y * cos(-game->player.rotate_speed);
-	}
+		rotate_left(game);
 	if (game->player.rotating.right)
-	{
-		old_dir_x = game->dir.x;
-		game->dir.x = game->dir.x * cos(game->player.rotate_speed) - game->dir.y * sin(game->player.rotate_speed);
-		game->dir.y = old_dir_x * sin(game->player.rotate_speed) + game->dir.y * cos(game->player.rotate_speed);
-		old_plane_x = game->plane.x;
-		game->plane.x = game->plane.x * cos(game->player.rotate_speed) - game->plane.y * sin(game->player.rotate_speed);
-		game->plane.y = old_plane_x * sin(game->player.rotate_speed) + game->plane.y * cos(game->player.rotate_speed);
-	}
+		rotate_right(game);
 }
 
 void	ft_move(t_game *game)
 {
 	if (game->player.moving.forward)
-	{
-		if (game->map[(int)game->player.y][(int)(game->player.x + game->dir.x * game->player.speed)] == '0')
-			game->player.x += game->dir.x * game->player.speed;
-		if (game->map[(int)(game->player.y + game->dir.y * game->player.speed)][(int)game->player.x] == '0')
-			game->player.y += game->dir.y * game->player.speed;
-	}
+		move_forward(game);
 	if (game->player.moving.backward)
-	{
-		if (game->map[(int)game->player.y][(int)(game->player.x - game->dir.x * game->player.speed)] == '0')
-			game->player.x -= game->dir.x * game->player.speed;
-		if (game->map[(int)(game->player.y - game->dir.y * game->player.speed)][(int)game->player.x] == '0')
-			game->player.y -= game->dir.y * game->player.speed;
-	}
+		move_backward(game);
 	if (game->player.moving.left)
-	{
-		if (game->map[(int)game->player.y][(int)(game->player.x + game->dir.y * game->player.speed)] == '0')
-			game->player.x += game->dir.y * game->player.speed;
-		if (game->map[(int)(game->player.y - game->dir.x * game->player.speed)][(int)game->player.x] == '0')
-			game->player.y += -game->dir.x * game->player.speed;
-	}
+		move_left(game);
 	if (game->player.moving.right)
-	{
-		if (game->map[(int)game->player.y][(int)(game->player.x - game->dir.y * game->player.speed)] == '0')
-			game->player.x += -game->dir.y * game->player.speed;
-		if (game->map[(int)(game->player.y + game->dir.x * game->player.speed)][(int)game->player.x] == '0')
-			game->player.y += game->dir.x * game->player.speed;
-	}
+		move_right(game);
 }
 
 void	ft_shift(t_game *game)
@@ -79,7 +42,7 @@ void	ft_shift(t_game *game)
 	else
 	{
 		game->player.speed = PL_SPEED * 3.6 / 100.0;
-		game->player.rotate_speed = (RT_SPEED * M_PI / 180);
+		game->player.rotate_speed = RT_SPEED * M_PI / 180;
 	}
 }
 

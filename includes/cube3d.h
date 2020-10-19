@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 20:04:19 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/19 18:48:56 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,18 @@ void				ft_rotate(t_game *game);
 void				ft_move(t_game *game);
 void				ft_shift(t_game *game);
 /*
+** Movement functions.
+*/
+void				move_forward(t_game *game);
+void				move_backward(t_game *game);
+void				move_right(t_game *game);
+void				move_left(t_game *game);
+/*
+** Rotating functions.
+*/
+void				rotate_right(t_game *game);
+void				rotate_left(t_game *game);
+/*
 ** Player functions.
 */
 void				set_player_position(t_game *game, size_t x, size_t y);
@@ -242,7 +254,8 @@ void				set_pixel(t_game *game, size_t pixel, int color);
 void				raycasting(t_game *game);
 void				draw_textured_line(t_game *game, size_t start,
 	size_t end, t_ray ray);
-void			draw_line(t_game *game, size_t start, size_t end, int color);
+void				draw_line(t_game *game, size_t start, size_t end,
+	int color);
 /*
 ** Validate functions.
 */

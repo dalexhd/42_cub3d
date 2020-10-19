@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:07:00 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 18:07:57 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/19 18:31:13 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@
 */
 # define RT_SPEED 3.6
 /*
-** TODO: View distance (m).
-*/
-# define CHUNKS 3
-/*
-** Habilitar sombras (TRUE/FALSE).
+** (BONUS)Habilitar sombras (TRUE/FALSE).
 */
 # define SHADES FALSE
 /*
