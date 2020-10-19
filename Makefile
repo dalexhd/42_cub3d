@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/17 12:49:24 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/17 13:57:04 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ endif
 
 # Mandatory part
 
-UTILS				=	utils/memory.c					utils/game.c				utils/player.c
+UTILS				=	utils/memory.c					utils/game.c				utils/player.c					utils/color.c					\
+						utils/raycasting.c
 
 UTILS_PARSE			=	utils/parse/file.c				utils/parse/map.c			utils/parse/colors.c			utils/parse/textures.c
 
@@ -59,7 +60,7 @@ UTILS_VALIDATE		=	utils/validate/file.c			utils/validate/map.c		utils/validate/s
 						utils/validate/colors.c
 
 SRCS				=	controls.c						parse.c						validate.c						window.c						\
-						init.c
+						init.c							raycasting.c
 
 SOURCES				=	$(SRCS) $(UTILS) $(UTILS_PARSE) $(UTILS_VALIDATE)
 

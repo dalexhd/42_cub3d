@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 13:07:50 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 20:04:19 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,11 +199,22 @@ typedef struct		s_game
 
 t_game				*load_game(int argc, char **argv);
 void				parse_game(t_game *game, char *file);
-
 /*
 ** Init functions.
 */
 void				init_game(int argc, char **argv);
+/*
+** Colors functions.
+*/
+int					rgb_to_hex(int r, int g, int b);
+int					convert_color(t_color color);
+int					ft_color(int color, double dist);
+int					ft_shade(int color, double dist);
+/*
+** Raycasting functions.
+*/
+t_ray				cast_ray(t_game *game, int x);
+t_ray				cast_texture(t_game *game, t_ray ray);
 /*
 ** Window functions.
 */
@@ -216,6 +227,10 @@ void				load_controls(t_game *game);
 void				ft_rotate(t_game *game);
 void				ft_move(t_game *game);
 void				ft_shift(t_game *game);
+/*
+** Player functions.
+*/
+void				set_player_position(t_game *game, size_t x, size_t y);
 t_bool				is_moving(t_game *game);
 t_bool				is_rotating(t_game *game);
 t_bool				is_shifting(t_game *game);
@@ -223,6 +238,11 @@ t_bool				is_shifting(t_game *game);
 ** Game internal functions.
 */
 int					main_loop(t_game *game);
+void				set_pixel(t_game *game, size_t pixel, int color);
+void				raycasting(t_game *game);
+void				draw_textured_line(t_game *game, size_t start,
+	size_t end, t_ray ray);
+void			draw_line(t_game *game, size_t start, size_t end, int color);
 /*
 ** Validate functions.
 */

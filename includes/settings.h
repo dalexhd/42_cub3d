@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:07:00 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/04 22:38:35 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/19 18:07:57 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 /*
 ** Habilitar sombras (TRUE/FALSE).
 */
-# define SHADES TRUE
+# define SHADES FALSE
 /*
 ** Título de la ventana del juego.
 */

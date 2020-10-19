@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:11 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 12:22:44 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 19:55:13 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,31 @@ void			check_player_pos(t_game *game)
 
 void			fill_map(t_game *game)
 {
-	t_bool		valid;
+	size_t		y;
+	size_t		x;
 
-	(void)valid;
 	if (valid_cub_struct(game))
 	{
 		if (has_map(game))
 		{
 			check_player_pos(game);
-			game->map = ft_split(game->tmp_map, '\n');
-			valid = validate_map(game);
+			if (validate_map(game))
+			{
+				game->map = ft_split(game->tmp_map, '\n');
+				y = 0;
+				while (game->map[y])
+				{
+					x = 0;
+					while (game->map[y][x])
+					{
+						if (game->map[y][x] == 'S' || game->map[y][x] == 'N' ||
+							game->map[y][x] == 'W' || game->map[y][x] == 'E')
+							set_player_position(game, x, y);
+						x++;
+					}
+					y++;
+				}
+			}
 		}
 		else
 			ft_error(ERR_MAP_MISSING, false);

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:00:16 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 12:50:17 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/19 17:58:33 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_rotate(t_game *game)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	if (game->player.rotating.right)
+	if (game->player.rotating.left)
 	{
 		old_dir_x = game->dir.x;
 		game->dir.x = game->dir.x * cos(-game->player.rotate_speed) - game->dir.y * sin(-game->player.rotate_speed);
@@ -26,7 +26,7 @@ void	ft_rotate(t_game *game)
 		game->plane.x = game->plane.x * cos(-game->player.rotate_speed) - game->plane.y * sin(-game->player.rotate_speed);
 		game->plane.y = old_plane_x * sin(-game->player.rotate_speed) + game->plane.y * cos(-game->player.rotate_speed);
 	}
-	if (game->player.rotating.left)
+	if (game->player.rotating.right)
 	{
 		old_dir_x = game->dir.x;
 		game->dir.x = game->dir.x * cos(game->player.rotate_speed) - game->dir.y * sin(game->player.rotate_speed);
@@ -53,14 +53,14 @@ void	ft_move(t_game *game)
 		if (game->map[(int)(game->player.y - game->dir.y * game->player.speed)][(int)game->player.x] == '0')
 			game->player.y -= game->dir.y * game->player.speed;
 	}
-	if (game->player.moving.right)
+	if (game->player.moving.left)
 	{
 		if (game->map[(int)game->player.y][(int)(game->player.x + game->dir.y * game->player.speed)] == '0')
 			game->player.x += game->dir.y * game->player.speed;
 		if (game->map[(int)(game->player.y - game->dir.x * game->player.speed)][(int)game->player.x] == '0')
 			game->player.y += -game->dir.x * game->player.speed;
 	}
-	if (game->player.moving.left)
+	if (game->player.moving.right)
 	{
 		if (game->map[(int)game->player.y][(int)(game->player.x - game->dir.y * game->player.speed)] == '0')
 			game->player.x += -game->dir.y * game->player.speed;
@@ -101,7 +101,10 @@ int		key_press(int keycode, t_game *game)
 	if (keycode == KEY_LEFT)
 		game->player.rotating.left = 1;
 	if (keycode == KEY_SHIFT)
-		game->player.shifting = 1;
+	{
+		printf("game->dir.x => %f\ngame->dir.y => %f\ngame->plane.x => %f\ngame->plane.y => %f\n\n", game->dir.x, game->dir.y, game->plane.x, game->plane.y);
+	}
+		// game->player.shifting = 1;
 	return (0);
 }
 

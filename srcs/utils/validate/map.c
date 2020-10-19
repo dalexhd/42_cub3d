@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 12:32:07 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 19:55:06 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,13 @@ t_bool			flood_map(t_game *game, int x, int y)
 t_bool			validate_map(t_game *game)
 {
 	t_ivector	pos;
-
+	game->map = ft_split(game->tmp_map, '\n');
 	pos = position(game, 0, 0);
 	if (!(check_first_last(game, 0, 0) && flood_map(game, pos.x, pos.y)))
 	{
 		game->valid.map = false;
 		return (false);
 	}
+	ft_split_del(game->map);
 	return (true);
 }
