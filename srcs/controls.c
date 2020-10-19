@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:00:16 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 17:58:33 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/19 18:30:13 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,7 @@ int		key_press(int keycode, t_game *game)
 	if (keycode == KEY_LEFT)
 		game->player.rotating.left = 1;
 	if (keycode == KEY_SHIFT)
-	{
-		printf("game->dir.x => %f\ngame->dir.y => %f\ngame->plane.x => %f\ngame->plane.y => %f\n\n", game->dir.x, game->dir.y, game->plane.x, game->plane.y);
-	}
-		// game->player.shifting = 1;
+		game->player.shifting = 1;
 	return (0);
 }
 
