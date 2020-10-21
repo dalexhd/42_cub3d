@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 13:07:37 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/21 17:33:45 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static	t_game		*init_structure(void)
 	game->colors = init_colors();
 	game->tmp_map = ft_strdup("");
 	game->minimap = 1;
+	game->screenshot = false;
 	game->player = (t_player){.x = -0., .y = -0.};
 	game->dir = (t_direction){.x = -1., .y = 0.};
 	game->plane = (t_direction){.x = 0, .y = 1};
@@ -78,6 +79,8 @@ void				init_game(int argc, char **argv)
 	if (argc < 2 || argc > 3)
 		ft_error(ERR_ARGV_CHECK, true);
 	game = init_structure();
+	if (argc == 3 && ft_strncmp(argv[2], "--save", -1) == 0)
+		game->screenshot = true;
 	parse_game(game, argv[1]);
 	if (!valid_cub(game))
 	{
@@ -91,6 +94,7 @@ void				init_game(int argc, char **argv)
 	}
 	init_window(game);
 	load_controls(game);
-	mlx_loop_hook(game->mlx, &main_loop, game);
+	raycasting(game);
+	// mlx_loop_hook(game->mlx, &main_loop, game);
 	mlx_loop(game->mlx);
 }

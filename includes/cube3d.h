@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 18:48:56 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/21 17:01:10 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ typedef struct		s_game
 	char			**verify_map;
 	int				minimap;
 	char			spawn;
+	t_bool			screenshot;
 	t_img			img;
 	t_ray			*rays;
 	t_colors		colors;
@@ -256,6 +257,7 @@ void				draw_textured_line(t_game *game, size_t start,
 	size_t end, t_ray ray);
 void				draw_line(t_game *game, size_t start, size_t end,
 	int color);
+int					take_screenshot(t_game *game);
 /*
 ** Validate functions.
 */
