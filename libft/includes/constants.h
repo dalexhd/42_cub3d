@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_warn.c                                          :+:      :+:    :+:   */
+/*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 15:15:10 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/13 14:03:37 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/23 10:28:53 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/23 10:55:23 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#ifndef CONSTANTS_H
+# define CONSTANTS_H
 
-void		ft_warn(char *s, ...)
-{
-	va_list args;
+# ifndef M_PI
+#  define M_PI	3.14159265358979323846
+# endif
 
-	va_start(args, s);
-	ft_printf(C_YELLOW"Warning\n\t⚠️  ");
-	ft_vprintf(s, &args);
-	ft_printf(C_X"\n");
-	va_end(args);
-}
+#endif

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/12 20:18:47 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 13:59:21 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,36 @@ typedef struct		s_valid
 	t_bool			map;
 }					t_valid;
 
+typedef struct		s_tmp
+{
+	t_bool			width;
+	t_bool			height;
+	t_bool			safe_line;
+}					t_tmp;
+
+typedef struct		s_sprite
+{
+	double			x;
+	double			y;
+	double			d;
+	double			inv_det;
+	t_ivector		texture;
+	t_direction		transform;
+	t_ivector		start;
+	t_ivector		end;
+	int				screen_x;
+	int				v_move_screen;
+	int				height;
+	int				width;
+	int				color;
+}					t_sprite;
+
+typedef struct		s_sprites
+{
+	size_t			count;
+	t_sprite		*data;
+}					t_sprites;
+
 typedef struct		s_game
 {
 	void			*mlx;
@@ -176,7 +206,12 @@ typedef struct		s_game
 	int				height;
 	int				x;
 	char			**map;
+	char			**verify_map;
+	double			*zbuffer;
 	int				minimap;
+	char			spawn;
+	t_sprites		sprites;
+	t_bool			bmp;
 	t_img			img;
 	t_ray			*rays;
 	t_colors		colors;
@@ -185,30 +220,92 @@ typedef struct		s_game
 	t_textures		textures;
 	t_direction		plane;
 	t_valid			valid;
+	t_tmp			tmp;
 }					t_game;
 
 t_game				*load_game(int argc, char **argv);
 void				parse_game(t_game *game, char *file);
-
 /*
 ** Init functions.
 */
-t_game				*init_game(int argc, char **argv);
+void				init_game(int argc, char **argv);
+/*
+** Colors functions.
+*/
+int					rgb_to_hex(int r, int g, int b);
+int					convert_color(t_color color);
+int					ft_color(int color, double dist);
+int					ft_shade(int color, double dist);
+/*
+** Raycasting functions.
+*/
+t_ray				cast_ray(t_game *game, int x);
+t_ray				cast_texture(t_game *game, t_ray ray);
+t_ray				setup_ray(t_game *game, int x);
+t_texture			ray_texture(t_game *game, t_ray ray);
+int					ray_direction(t_ray ray);
+void				raycasting(t_game *game);
+t_bool				is_side(t_ray ray);
+/*
+** Window functions.
+*/
+void				init_window(t_game *game);
+int					close_window(t_game *game);
+/*
+** Controls functions.
+*/
+void				load_controls(t_game *game);
+void				ft_rotate(t_game *game);
+void				ft_move(t_game *game);
+void				ft_shift(t_game *game);
+/*
+** Movement functions.
+*/
+void				move_forward(t_game *game);
+void				move_backward(t_game *game);
+void				move_right(t_game *game);
+void				move_left(t_game *game);
+/*
+** Rotating functions.
+*/
+void				rotate_right(t_game *game);
+void				rotate_left(t_game *game);
+/*
+** Player functions.
+*/
+void				set_player_position(t_game *game, size_t x, size_t y);
+t_bool				is_moving(t_game *game);
+t_bool				is_rotating(t_game *game);
+t_bool				is_shifting(t_game *game);
+/*
+** Game internal functions.
+*/
+int					main_loop(t_game *game);
+void				set_pixel(t_game *game, size_t pixel, int color);
+void				draw_textured_line(t_game *game, size_t start,
+	size_t end, t_ray ray);
+void				draw_line(t_game *game, size_t start, size_t end,
+	int color);
+int					take_screenshot(t_game *game);
 /*
 ** Validate functions.
 */
 t_bool				valid_cubfile(char *file);
-t_bool				validate_color(char *color);
+t_bool				validate_color(t_game *game, char *color, char *line);
 t_bool				has_colors(t_game *game);
 t_bool				has_floor(t_game *game);
 t_bool				has_ceiling(t_game *game);
 t_bool				has_screen(t_game *game);
 t_bool				has_textures(t_game *game);
-t_bool				validate_map(char *tmp_map);
-t_bool				validate_screen(t_game *game, char *height, char *width);
+t_bool				has_map(t_game *game, t_bool check);
+t_bool				validate_map(t_game *game);
+t_bool				validate_map_line(t_game *game, char *line, size_t num);
+t_bool				validate_screen(t_game *game, char *res, char *height,
+	char *width);
 void				invalid_screen(t_game *game, char **size);
 t_bool				valid_cub(t_game *game);
-t_bool				validate_texture(t_game *game, char *path, char *name);
+t_bool				validate_texture(t_game *game, char *path,
+	char *name, char *de);
 t_bool				valid_cub_struct(t_game *game);
 /*
 ** Parse functions.
@@ -220,6 +317,12 @@ void				parse_ceiling(t_game *game, char *line);
 void				parse_map(t_game *game, char *line);
 void				parse_textures(t_game *game, char *line);
 void				fill_map(t_game *game);
+t_texture			load_texture(void *mlx_ptr, char *path);
+/*
+** Sprites functions.
+*/
+void				set_sprites(t_game *game);
+void				draw_sprites(t_game *game);
 /*
 ** Clear the memory of the game
 ** @param  {t_game*} game : The game instance
@@ -229,6 +332,8 @@ void				clear_memory(t_game *game);
 ** Clear an especific texture
 ** @param  {t_texture} texture : The texture to clear instance
 ** @param  {void*} mlx_ptr     : The mlx pointer
+** @param  {t_bool*} delpath   : Delete the path painter
 */
-void				clear_texture(t_texture texture, void *mlx_ptr);
+void				clear_texture(t_texture texture, void *mlx_ptr,
+	t_bool delpath);
 #endif

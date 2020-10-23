@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/12 01:32:46 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 12:49:55 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,34 +61,42 @@ static	t_game		*init_structure(void)
 	game->textures = init_textures();
 	game->colors = init_colors();
 	game->tmp_map = ft_strdup("");
+	game->sprites.count = 0;
 	game->minimap = 1;
+	game->bmp = false;
 	game->player = (t_player){.x = -0., .y = -0.};
 	game->dir = (t_direction){.x = -1., .y = 0.};
 	game->plane = (t_direction){.x = 0, .y = 1};
-	game->height = -1;
-	game->width = -1;
 	game->player = init_player();
 	game->valid = (t_valid){.screen = true, .textures = true,
 		.colors = true, .map = true};
 	return (game);
 }
 
-t_game				*init_game(int argc, char **argv)
+void				init_game(int argc, char **argv)
 {
 	t_game			*game;
 
 	if (argc < 2 || argc > 3)
-		ft_error("Please check your arguments", true);
+		ft_error(ERR_ARGV_CHECK, true);
 	game = init_structure();
+	if (argc == 3 && ft_strncmp(argv[2], "--save", -1) == 0)
+		game->bmp = true;
 	parse_game(game, argv[1]);
 	if (!valid_cub(game))
-		exit(EXIT_FAILURE);
-	fill_map(game);
-	if (!valid_cub_struct(game))
 	{
-		ft_error("There's something missing in your cub file!", false);
 		clear_memory(game);
 		exit(EXIT_FAILURE);
 	}
-	return (game);
+	if (!valid_cub_struct(game))
+	{
+		clear_memory(game);
+		ft_error(ERR_CUB_S_MISS, true);
+	}
+	init_window(game);
+	if (!game->bmp)
+		load_controls(game);
+	raycasting(game);
+	mlx_loop_hook(game->mlx, &main_loop, game);
+	mlx_loop(game->mlx);
 }

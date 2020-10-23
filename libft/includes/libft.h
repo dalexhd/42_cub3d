@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 20:45:27 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/11 22:11:39 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:28:51 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@
 ** Incluimos nuestros types.
 */
 # include "types.h"
+
+/*
+** Incluimos las constantes.
+*/
+# include "constants.h"
 
 typedef struct	s_list
 {
@@ -118,4 +123,6 @@ char			*ft_strreplace(const char *haystack, const char *needle,
 				char *str);
 t_bool			ft_strendswith(const char *haystack, const char *needle);
 size_t			ft_countchars(char const *str, char c);
+t_llong			ft_atoll(const char *str);
+size_t			ft_countnumbers(char const *str);
 #endif

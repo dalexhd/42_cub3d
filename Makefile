@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/12 19:04:36 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/23 14:06:32 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,9 @@ endif
 
 # Mandatory part
 
-UTILS				=	utils/memory.c
+UTILS				=	utils/memory.c					utils/game.c				utils/player.c					utils/color.c					\
+						utils/raycasting.c				utils/rotating.c			utils/movement.c				utils/screenshot.c				\
+						utils/sprite.c					utils/ray.c
 
 UTILS_PARSE			=	utils/parse/file.c				utils/parse/map.c			utils/parse/colors.c			utils/parse/textures.c
 
@@ -59,7 +61,7 @@ UTILS_VALIDATE		=	utils/validate/file.c			utils/validate/map.c		utils/validate/s
 						utils/validate/colors.c
 
 SRCS				=	controls.c						parse.c						validate.c						window.c						\
-						init.c
+						init.c							raycasting.c
 
 SOURCES				=	$(SRCS) $(UTILS) $(UTILS_PARSE) $(UTILS_VALIDATE)
 
@@ -128,7 +130,6 @@ BG_X				=	$(shell printf "\033[0;39m")
 
 # Make all files.
 all:
-			@make fclean
 			@make $(NAME)
 
 # Objects directory
@@ -177,7 +178,6 @@ $(BONUS_OFILE):
 ##@ Cleaning
 clean:		## Clean all objects.
 			$(RM) $(OBJ_DIR)
-			@make clean -C $(LIBFT_DIR)
 
 
 fclean:		## Remove all objects and executables.
@@ -218,7 +218,7 @@ bonus:		## Make bonus
 			@make $(BONUS)
 
 re:			## Call fclean => all
-			@make fclean
+			@make clean
 			@make all
 
 ##@ Testing
@@ -226,7 +226,7 @@ testback:		## Make cub3d test
 			cd ./tools/tester && ./test_map_valid_function.sh -f
 
 test:		## Make cub3d test
-			cd ./cub3d-tester && ./destroyer.sh --threads 5 --show-output
+			cd ./cub3d-tester && ./destroyer.sh --process 10
 
 ##@ Help
 help:		## View all available commands.

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 18:43:19 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/11 11:58:48 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/13 10:08:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		ft_fprintf(int fd, char *format, ...)
 		return (EXIT_FAILURE);
 	va_start(args, format);
 	init_struct(info, &format, &args);
-	result = info->count;
 	while (info->str[0][0])
 	{
 		if (info->str[0][0] != '%')

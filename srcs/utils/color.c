@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_warn.c                                          :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 15:15:10 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/13 14:03:37 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/17 13:27:57 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/19 18:15:45 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../includes/cube3d.h"
 
-void		ft_warn(char *s, ...)
+int		rgb_to_hex(int r, int g, int b)
 {
-	va_list args;
+	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+}
 
-	va_start(args, s);
-	ft_printf(C_YELLOW"Warning\n\t⚠️  ");
-	ft_vprintf(s, &args);
-	ft_printf(C_X"\n");
-	va_end(args);
+int		convert_color(t_color color)
+{
+	return (rgb_to_hex(color.r, color.g, color.b));
 }

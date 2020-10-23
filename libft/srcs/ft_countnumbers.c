@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file.c                                             :+:      :+:    :+:   */
+/*   ft_countnumbers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/10 19:50:27 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/13 17:04:53 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/13 17:59:32 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/14 12:55:57 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube3d.h"
+#include "../includes/libft.h"
 
-int		parse_file(t_game *game, char *file)
+/*
+** @author	aborboll
+** @param	{char const *str}	The string where count numbers
+** @desc	Count numbers in string
+** @returns	int
+*/
+
+size_t	ft_countnumbers(char const *str)
 {
-	int	fd;
+	int	i;
+	int	count;
 
-	if (!valid_cubfile(file))
+	i = 0;
+	count = 0;
+	if (str != NULL)
 	{
-		clear_memory(game);
-		exit(EXIT_FAILURE);
+		while (str[i])
+		{
+			if (ft_isdigit(str[i]) && str[i + 1] && !ft_isdigit(str[i + 1]))
+			{
+				count++;
+			}
+			i++;
+		}
 	}
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		clear_memory(game);
-		ft_error(ERR_FILE_OP, true, file);
-	}
-	return (fd);
+	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:26:50 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/10 21:46:49 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/17 12:52:41 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	main(int argc, char **argv)
 {
-	t_game	*game;
-
-	game = init_game(argc, argv);
-	clear_memory(game);
+	init_game(argc, argv);
 	return (0);
 }

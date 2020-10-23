@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:42:25 by aborboll          #+#    #+#             */
-/*   Updated: 2020/08/28 17:08:59 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/13 10:59:43 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 	i = 0;
 	j = 0;
-	while (dst[i] && i < dstsize)
+	while (i < dstsize && dst[i])
 		i++;
 	while (src[j] && i + j + 1 < dstsize)
 	{
