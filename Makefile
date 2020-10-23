@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/23 10:57:27 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/23 14:06:32 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,7 +130,6 @@ BG_X				=	$(shell printf "\033[0;39m")
 
 # Make all files.
 all:
-			@make fclean
 			@make $(NAME)
 
 # Objects directory
@@ -179,7 +178,6 @@ $(BONUS_OFILE):
 ##@ Cleaning
 clean:		## Clean all objects.
 			$(RM) $(OBJ_DIR)
-			@make clean -C $(LIBFT_DIR)
 
 
 fclean:		## Remove all objects and executables.
@@ -220,7 +218,7 @@ bonus:		## Make bonus
 			@make $(BONUS)
 
 re:			## Call fclean => all
-			@make fclean
+			@make clean
 			@make all
 
 ##@ Testing
