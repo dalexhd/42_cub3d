@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 12:50:02 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 13:59:21 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,7 +297,7 @@ t_bool				has_floor(t_game *game);
 t_bool				has_ceiling(t_game *game);
 t_bool				has_screen(t_game *game);
 t_bool				has_textures(t_game *game);
-t_bool				has_map(t_game *game);
+t_bool				has_map(t_game *game, t_bool check);
 t_bool				validate_map(t_game *game);
 t_bool				validate_map_line(t_game *game, char *line, size_t num);
 t_bool				validate_screen(t_game *game, char *res, char *height,

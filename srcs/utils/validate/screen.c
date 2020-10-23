@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:41 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 13:01:09 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 13:59:06 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_bool		validate_screen(t_game *game, char *res, char *width, char *height)
 	char	*t;
 
 	error = false;
-	if (has_map(game) && (error = true))
+	if (has_map(game, false) && (error = true))
 		ft_error(ERR_AFTER_MAP, false, "Resolution");
 	if (((!width || ft_strlen(width) < 1) || !ft_strevery(width, ft_isdigit))
 		&& (error = true))

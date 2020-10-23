@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:18:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 13:13:46 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 13:59:06 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void			set_sprites(t_game *game)
 
 	if (valid_cub_struct(game))
 	{
-		if (has_map(game))
+		if (has_map(game, false))
 		{
 			game->zbuffer = malloc(sizeof(double) * game->width);
 			game->sprites.data = malloc(sizeof(t_sprite) * game->sprites.count);

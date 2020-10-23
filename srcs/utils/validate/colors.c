@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:21 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 12:00:16 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 13:59:06 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_bool	validate_color(t_game *game, char *color, char *line)
 {
 	int	num;
 
-	if (has_map(game))
+	if (has_map(game, false))
 	{
 		ft_error("Color "ERR_AFTER_MAP, false, line);
 		return (false);

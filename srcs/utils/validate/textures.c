@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:20:18 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 11:33:07 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 13:59:06 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_bool			validate_texture(t_game *game, char *path, char *name, char *de)
 	int			fd;
 	t_texture	texture;
 
-	if (de || has_map(game))
+	if (de || has_map(game, false))
 	{
 		ft_error(de ? "Texture "ERR_TEX_LOADED : "Texture "ERR_AFTER_MAP, false,
 			de ? name : path);

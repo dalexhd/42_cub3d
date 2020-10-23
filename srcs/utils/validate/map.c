@@ -6,15 +6,23 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 19:31:21 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 13:58:31 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-t_bool				has_map(t_game *game)
+t_bool				has_map(t_game *game, t_bool check)
 {
-	return (ft_strlen(game->tmp_map) > 0);
+	t_bool			valid;
+
+	valid = ft_strlen(game->tmp_map) > 0;
+	if (check && !valid)
+	{
+		ft_error(ERR_MAP_MISSING, false);
+		game->valid.map = false;
+	}
+	return (valid);
 }
 
 static	t_ivector	position(t_game *game, int x, int y)

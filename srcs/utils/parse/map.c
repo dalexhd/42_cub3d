@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:11 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 13:24:28 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 13:58:51 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void			fill_map(t_game *game)
 
 	if (valid_cub_struct(game))
 	{
-		if (has_map(game))
+		if (has_map(game, true))
 		{
 			check_player_sprite_pos(game);
 			if (validate_map(game))
@@ -96,11 +96,6 @@ void			fill_map(t_game *game)
 							set_player_position(game, x, y);
 				}
 			}
-		}
-		else
-		{
-			ft_error(ERR_MAP_MISSING, false);
-			game->valid.map = false;
 		}
 	}
 }
