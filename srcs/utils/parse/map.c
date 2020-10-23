@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:11 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 19:07:41 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/22 10:58:37 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			parse_map(t_game *game, char *line)
 	}
 }
 
-void			check_player_pos(t_game *game)
+void			check_player_sprite_pos(t_game *game)
 {
 	size_t		i;
 	size_t		valid;
@@ -62,6 +62,8 @@ void			check_player_pos(t_game *game)
 			valid++;
 			game->spawn = game->tmp_map[i];
 		}
+		if (game->tmp_map[i] == '2')
+			game->sprites.count++;
 		i++;
 	}
 	if (valid != 1)
@@ -77,7 +79,7 @@ void			fill_map(t_game *game)
 	{
 		if (has_map(game))
 		{
-			check_player_pos(game);
+			check_player_sprite_pos(game);
 			if (validate_map(game))
 			{
 				game->map = ft_split(game->tmp_map, '\n');

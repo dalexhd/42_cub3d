@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:14 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 12:35:41 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/22 10:50:17 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ void		parse_game(t_game *game, char *file)
 	ft_strdel(&line);
 	close(fd);
 	fill_map(game);
+	set_sprites(game);
 }

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/21 17:33:45 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 09:54:16 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static	t_game		*init_structure(void)
 	game->textures = init_textures();
 	game->colors = init_colors();
 	game->tmp_map = ft_strdup("");
+	game->sprites.count = 0;
 	game->minimap = 1;
 	game->screenshot = false;
 	game->player = (t_player){.x = -0., .y = -0.};
@@ -95,6 +96,6 @@ void				init_game(int argc, char **argv)
 	init_window(game);
 	load_controls(game);
 	raycasting(game);
-	// mlx_loop_hook(game->mlx, &main_loop, game);
+	mlx_loop_hook(game->mlx, &main_loop, game);
 	mlx_loop(game->mlx);
 }

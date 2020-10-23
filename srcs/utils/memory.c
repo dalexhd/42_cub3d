@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 10:57:57 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 13:05:51 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/22 11:05:52 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void	clear_memory(t_game *game)
 	}
 	if (game->map != NULL)
 		ft_split_del(game->map);
+	free(game->zbuffer);
+	free(game->sprites.data);
 	free(game);
 }

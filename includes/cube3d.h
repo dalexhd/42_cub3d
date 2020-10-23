@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/21 17:01:10 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/22 12:51:19 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,29 @@ typedef struct		s_tmp
 	t_bool			safe_line;
 }					t_tmp;
 
+typedef struct		s_sprite
+{
+	double			x;
+	double			y;
+	double			d;
+	double			inv_det;
+	t_ivector		texture;
+	t_direction		transform;
+	t_ivector		start;
+	t_ivector		end;
+	int				screen_x;
+	int				v_move_screen;
+	int				height;
+	int				width;
+	int				color;
+}					t_sprite;
+
+typedef struct		s_sprites
+{
+	size_t			count;
+	t_sprite		*data;
+}					t_sprites;
+
 typedef struct		s_game
 {
 	void			*mlx;
@@ -184,8 +207,10 @@ typedef struct		s_game
 	int				x;
 	char			**map;
 	char			**verify_map;
+	double			*zbuffer;
 	int				minimap;
 	char			spawn;
+	t_sprites		sprites;
 	t_bool			screenshot;
 	t_img			img;
 	t_ray			*rays;
@@ -289,6 +314,11 @@ void				parse_map(t_game *game, char *line);
 void				parse_textures(t_game *game, char *line);
 void				fill_map(t_game *game);
 t_texture			load_texture(void *mlx_ptr, char *path);
+/*
+** Sprites functions.
+*/
+void				set_sprites(t_game * game);
+void				draw_sprites(t_game *game);
 /*
 ** Clear the memory of the game
 ** @param  {t_game*} game : The game instance

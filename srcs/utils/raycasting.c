@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 13:55:49 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 19:12:04 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/22 13:56:12 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ t_ray			cast_ray(t_game *game, int x)
 		ray.end = game->height - 1;
 	if (ray.end < 0)
 		ray.end = 0;
+	game->zbuffer[x] = ray.dist;
 	return (ray);
 }
