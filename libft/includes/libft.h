@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 20:45:27 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/13 18:28:38 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:28:51 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@
 ** Incluimos nuestros types.
 */
 # include "types.h"
+
+/*
+** Incluimos las constantes.
+*/
+# include "constants.h"
 
 typedef struct	s_list
 {

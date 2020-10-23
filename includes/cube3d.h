@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/22 12:51:19 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:51:13 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,11 @@ int					ft_shade(int color, double dist);
 */
 t_ray				cast_ray(t_game *game, int x);
 t_ray				cast_texture(t_game *game, t_ray ray);
+t_ray				setup_ray(t_game *game, int x);
+t_texture			ray_texture(t_game *game, t_ray ray);
+int					ray_direction(t_ray ray);
+void				raycasting(t_game *game);
+t_bool				is_side(t_ray ray);
 /*
 ** Window functions.
 */
@@ -277,7 +282,6 @@ t_bool				is_shifting(t_game *game);
 */
 int					main_loop(t_game *game);
 void				set_pixel(t_game *game, size_t pixel, int color);
-void				raycasting(t_game *game);
 void				draw_textured_line(t_game *game, size_t start,
 	size_t end, t_ray ray);
 void				draw_line(t_game *game, size_t start, size_t end,
@@ -317,7 +321,7 @@ t_texture			load_texture(void *mlx_ptr, char *path);
 /*
 ** Sprites functions.
 */
-void				set_sprites(t_game * game);
+void				set_sprites(t_game *game);
 void				draw_sprites(t_game *game);
 /*
 ** Clear the memory of the game

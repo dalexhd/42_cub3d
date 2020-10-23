@@ -6,13 +6,13 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 15:44:21 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/21 17:41:20 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:24:48 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-static	void	int_char(t_uchar *src, int nb)
+static	void			int_char(t_uchar *src, int nb)
 {
 	src[0] = (t_uchar)(nb);
 	src[1] = (t_uchar)(nb >> 8);
@@ -63,7 +63,7 @@ static void				bmp_pixels(t_game *game, int fd, int pad)
 	}
 }
 
-int					take_screenshot(t_game *game)
+int						take_screenshot(t_game *game)
 {
 	int					fd;
 	int					size;

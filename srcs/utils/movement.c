@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 18:42:35 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 19:09:57 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:33:00 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,16 @@ void	move_left(t_game *game)
 	if (game->map[(int)(game->player.y - game->dir.x * game->player.speed)]
 		[(int)game->player.x] == '0')
 		game->player.y += -game->dir.x * game->player.speed;
+}
+
+void	ft_move(t_game *game)
+{
+	if (game->player.moving.forward)
+		move_forward(game);
+	if (game->player.moving.backward)
+		move_backward(game);
+	if (game->player.moving.left)
+		move_left(game);
+	if (game->player.moving.right)
+		move_right(game);
 }

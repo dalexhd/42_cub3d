@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 18:42:35 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 19:04:43 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:32:37 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ void		rotate_left(t_game *game)
 		game->plane.y * sin(-game->player.rotate_speed);
 	game->plane.y = old_plane_x * sin(-game->player.rotate_speed) +
 		game->plane.y * cos(-game->player.rotate_speed);
+}
+
+void		ft_rotate(t_game *game)
+{
+	if (game->player.rotating.left)
+		rotate_left(game);
+	if (game->player.rotating.right)
+		rotate_right(game);
 }

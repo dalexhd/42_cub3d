@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/22 13:47:00 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/23 10:57:27 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ endif
 
 UTILS				=	utils/memory.c					utils/game.c				utils/player.c					utils/color.c					\
 						utils/raycasting.c				utils/rotating.c			utils/movement.c				utils/screenshot.c				\
-						utils/sprite.c
+						utils/sprite.c					utils/ray.c
 
 UTILS_PARSE			=	utils/parse/file.c				utils/parse/map.c			utils/parse/colors.c			utils/parse/textures.c
 

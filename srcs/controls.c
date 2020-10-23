@@ -5,50 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 17:00:16 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 19:13:13 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/23 10:33:47 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/23 10:37:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	ft_rotate(t_game *game)
-{
-	if (game->player.rotating.left)
-		rotate_left(game);
-	if (game->player.rotating.right)
-		rotate_right(game);
-}
-
-void	ft_move(t_game *game)
-{
-	if (game->player.moving.forward)
-		move_forward(game);
-	if (game->player.moving.backward)
-		move_backward(game);
-	if (game->player.moving.left)
-		move_left(game);
-	if (game->player.moving.right)
-		move_right(game);
-}
-
 void	ft_shift(t_game *game)
 {
 	if (game->player.shifting)
 	{
-		game->player.speed = (PL_SPEED * 3.6 / 100.0) / 2;
-		game->player.rotate_speed = (RT_SPEED * M_PI / 180) / 1.5;
+		game->player.speed = ((double)PL_SPEED * 3.6 / 100.0) / 2;
+		game->player.rotate_speed = ((double)RT_SPEED * M_PI / 180) / 1.5;
 	}
 	else
 	{
-		game->player.speed = PL_SPEED * 3.6 / 100.0;
-		game->player.rotate_speed = RT_SPEED * M_PI / 180;
+		game->player.speed = (double)PL_SPEED * 3.6 / 100.0;
+		game->player.rotate_speed = (double)RT_SPEED * M_PI / 180;
 	}
 }
 
 int		key_press(int keycode, t_game *game)
 {
-	(void)(*game);
 	if (keycode == KEY_ESC)
 		close_window(game);
 	if (keycode == KEY_W)
