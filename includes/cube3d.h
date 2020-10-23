@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 10:51:13 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 12:50:02 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ typedef struct		s_game
 	int				minimap;
 	char			spawn;
 	t_sprites		sprites;
-	t_bool			screenshot;
+	t_bool			bmp;
 	t_img			img;
 	t_ray			*rays;
 	t_colors		colors;

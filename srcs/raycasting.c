@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 13:16:37 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/22 11:25:50 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 12:49:55 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		raycasting(t_game *game)
 		draw_textured_line(game, ray.start, ray.end, ray);
 	}
 	draw_sprites(game);
-	if (game->screenshot)
+	if (game->bmp)
 	{
 		take_screenshot(game);
 		clear_memory(game);

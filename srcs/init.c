@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 09:54:16 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 12:49:55 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static	t_game		*init_structure(void)
 	game->tmp_map = ft_strdup("");
 	game->sprites.count = 0;
 	game->minimap = 1;
-	game->screenshot = false;
+	game->bmp = false;
 	game->player = (t_player){.x = -0., .y = -0.};
 	game->dir = (t_direction){.x = -1., .y = 0.};
 	game->plane = (t_direction){.x = 0, .y = 1};
@@ -81,7 +81,7 @@ void				init_game(int argc, char **argv)
 		ft_error(ERR_ARGV_CHECK, true);
 	game = init_structure();
 	if (argc == 3 && ft_strncmp(argv[2], "--save", -1) == 0)
-		game->screenshot = true;
+		game->bmp = true;
 	parse_game(game, argv[1]);
 	if (!valid_cub(game))
 	{
@@ -94,7 +94,8 @@ void				init_game(int argc, char **argv)
 		ft_error(ERR_CUB_S_MISS, true);
 	}
 	init_window(game);
-	load_controls(game);
+	if (!game->bmp)
+		load_controls(game);
 	raycasting(game);
 	mlx_loop_hook(game->mlx, &main_loop, game);
 	mlx_loop(game->mlx);
