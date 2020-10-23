@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:18:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 10:23:06 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 13:13:46 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,16 +111,22 @@ void			set_sprites(t_game *game)
 	size_t		x;
 	size_t		i;
 
-	game->zbuffer = malloc(sizeof(double) * game->width);
-	game->sprites.data = malloc(sizeof(t_sprite) * game->sprites.count);
-	y = -1;
-	i = -1;
-	while (game->map[++y])
+	if (valid_cub_struct(game))
 	{
-		x = -1;
-		while (game->map[y][++x])
-			if (game->map[y][x] == '2')
-				game->sprites.data[++i] = (t_sprite){.y = (double)y + 0.5,
-					.x = (double)x + 0.5, .d = (double)0};
+		if (has_map(game))
+		{
+			game->zbuffer = malloc(sizeof(double) * game->width);
+			game->sprites.data = malloc(sizeof(t_sprite) * game->sprites.count);
+			y = -1;
+			i = -1;
+			while (game->map[++y])
+			{
+				x = -1;
+				while (game->map[y][++x])
+					if (game->map[y][x] == '2')
+						game->sprites.data[++i] = (t_sprite){.y = (double)y +
+							0.5, .x = (double)x + 0.5, .d = (double)0};
+			}
+		}
 	}
 }

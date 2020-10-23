@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:11 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/22 10:58:37 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/23 13:24:28 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ void			check_player_sprite_pos(t_game *game)
 		i++;
 	}
 	if (valid != 1)
-		ft_error("Mapp err 1", false);
+	{
+		ft_error("Could not found player position!", false);
+		game->valid.map = false;
+	}
 }
 
 void			fill_map(t_game *game)
@@ -95,6 +98,9 @@ void			fill_map(t_game *game)
 			}
 		}
 		else
+		{
 			ft_error(ERR_MAP_MISSING, false);
+			game->valid.map = false;
+		}
 	}
 }
