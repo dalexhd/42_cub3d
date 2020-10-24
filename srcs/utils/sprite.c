@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:18:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 13:59:06 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 12:05:17 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			order_sprites(t_game *game)
 		game->sprites.data[i].d = hypot(game->sprites.data[i].x -
 			game->player.x, game->sprites.data[i].y - game->player.y);
 	i = -1;
-	while (++i < game->sprites.count - 2)
+	while (++i < game->sprites.count - 1)
 	{
 		k = i;
 		while (++k < game->sprites.count)
@@ -71,6 +71,7 @@ void			draw_sprite(t_game *game, t_sprite spr)
 {
 	int			x;
 	int			y;
+	int			k;
 	t_texture	tex;
 
 	x = spr.start.x - 1;
@@ -85,10 +86,10 @@ void			draw_sprite(t_game *game, t_sprite spr)
 			y = spr.start.y - 1;
 			while (++y < spr.end.y)
 			{
-				spr.d = y * 256 - game->height * 128 + spr.height * 128;
-				spr.texture.y = ((spr.d * tex.height) / spr.height) / 256;
+				k = y * 256 - game->height * 128 + spr.height * 128;
+				spr.texture.y = ((k * tex.height) / spr.height) / 256;
 				spr.color = tex.ptr[tex.width * spr.texture.y + spr.texture.x];
-				if ((spr.color & 0x00FFFFFF) != 0)
+				if ((spr.color & 0x00ffffff) != 0)
 					set_pixel(game, game->width * y + x, spr.color);
 			}
 		}
@@ -99,6 +100,7 @@ void			draw_sprites(t_game *game)
 {
 	size_t		i;
 
+	i = -1;
 	order_sprites(game);
 	i = -1;
 	while (++i < game->sprites.count)
