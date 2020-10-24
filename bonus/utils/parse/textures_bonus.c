@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 15:47:40 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:08:28 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:17:20 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ void			parse_textures(t_game *game, char *line)
 	else if ((path = parse_texture(game, "EA ", 3, line)) &&
 		validate_texture(game, path, "EA", game->textures.east.path))
 		game->textures.east = load_texture(game->mlx, path);
+	else if ((path = parse_texture(game, "F ", 2, line)) &&
+		validate_texture(game, path, "F", game->textures.floor.path))
+		game->textures.floor = load_texture(game->mlx, path);
+	else if ((path = parse_texture(game, "C ", 2, line)) &&
+		validate_texture(game, path, "F", game->textures.ceiling.path))
+		game->textures.ceiling = load_texture(game->mlx, path);
 	else if ((path = parse_texture(game, "S ", 2, line)) &&
 		validate_texture(game, path, "S", game->textures.sprite.path))
 		game->textures.sprite = load_texture(game->mlx, path);

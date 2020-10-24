@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:14 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:08:28 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:15:05 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void		parse_game(t_game *game, char *file)
 		trimmed = ft_strtrim(line, " ");
 		parse_screen(game, trimmed);
 		parse_textures(game, trimmed);
-		parse_floor(game, trimmed);
-		parse_ceiling(game, trimmed);
 		parse_map(game, line);
 		ft_strdel(&trimmed);
 		ft_strdel(&line);

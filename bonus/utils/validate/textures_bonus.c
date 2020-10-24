@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 17:20:18 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:08:28 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:15:59 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ t_bool			has_textures(t_game *game)
 	game->textures.south.path &&
 	game->textures.west.path &&
 	game->textures.east.path &&
+	game->textures.floor.path &&
+	game->textures.ceiling.path &&
 	game->textures.sprite.path);
 }

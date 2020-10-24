@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   settings.h                                         :+:      :+:    :+:   */
+/*   settings_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:07:00 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 18:31:13 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:32:51 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 /*
 ** (BONUS)Habilitar sombras (TRUE/FALSE).
 */
-# define SHADES FALSE
+# define SHADES TRUE
 /*
 ** Título de la ventana del juego.
 */

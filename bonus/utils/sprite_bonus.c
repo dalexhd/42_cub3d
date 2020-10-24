@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:18:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:08:28 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:38:24 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void			draw_sprite(t_game *game, t_sprite spr)
 				spr.texture.y = ((k * tex.height) / spr.height) / 256;
 				spr.color = tex.ptr[tex.width * spr.texture.y + spr.texture.x];
 				if ((spr.color & 0x00ffffff) != 0)
-					set_pixel(game, game->width * y + x, spr.color);
+					set_pixel(game, game->width * y + x, ft_color(spr.color, spr.d));
 			}
 		}
 	}

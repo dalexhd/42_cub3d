@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:09:58 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:20:03 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static	t_textures	init_textures(void)
 		.south.path = NULL, .south.ptr = NULL,
 		.east.path = NULL, .east.ptr = NULL,
 		.west.path = NULL, .west.ptr = NULL,
+		.ceiling.path = NULL, .floor.ptr = NULL,
 		.sprite.path = NULL, .sprite.ptr = NULL,
 	};
 	return (textures);

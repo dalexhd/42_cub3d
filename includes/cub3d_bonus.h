@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 13:59:21 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:37:28 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@
 /*
 ** Include our game global settings.
 */
-# include "settings.h"
+# include "settings_bonus.h"
 
 /*
 ** Include internal values of the cub3d.
 */
-# include "internal.h"
+# include "internal_bonus.h"
 
 typedef struct		s_img
 {

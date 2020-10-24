@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:07:00 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 18:31:13 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:43:08 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@
 ** Velocidad de rotación jugador (deg/s).
 */
 # define RT_SPEED 3.6
-/*
-** (BONUS)Habilitar sombras (TRUE/FALSE).
-*/
-# define SHADES FALSE
 /*
 ** Título de la ventana del juego.
 */
