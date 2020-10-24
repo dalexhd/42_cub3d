@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file.c                                             :+:      :+:    :+:   */
+/*   file_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/10 19:49:10 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/10 19:50:27 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/24 13:08:28 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
-t_bool		valid_cubfile(char *file)
+int		parse_file(t_game *game, char *file)
 {
-	if (!ft_strendswith(file, ".cub"))
+	int	fd;
+
+	if (!valid_cubfile(file))
 	{
-		ft_error("ARGV ERROR: Use: ./CUB3D [file].cub"C_X, false);
-		return (false);
+		clear_memory(game);
+		exit(EXIT_FAILURE);
 	}
-	return (true);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		clear_memory(game);
+		ft_error(ERR_FILE_OP, true, file);
+	}
+	return (fd);
 }

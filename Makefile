@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/23 14:06:32 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/24 13:12:20 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,9 +66,19 @@ SRCS				=	controls.c						parse.c						validate.c						window.c						\
 SOURCES				=	$(SRCS) $(UTILS) $(UTILS_PARSE) $(UTILS_VALIDATE)
 
 # Bonus part
-BONUS_UTILS			=
-BONUS_SRCS			=
-BONUS_SOURCES		=	$(BONUS_SRCS) $(BONUS_UTILS)
+B_UTILS				=	utils/memory_bonus.c			utils/game_bonus.c			utils/player_bonus.c			utils/color_bonus.c				\
+						utils/raycasting_bonus.c		utils/rotating_bonus.c		utils/movement_bonus.c			utils/screenshot_bonus.c		\
+						utils/sprite_bonus.c			utils/ray_bonus.c
+
+B_UTILS_PARSE		=	utils/parse/file_bonus.c		utils/parse/map_bonus.c		utils/parse/colors_bonus.c		utils/parse/textures_bonus.c
+
+B_UTILS_VALIDATE	=	utils/validate/file_bonus.c		utils/validate/map_bonus.c	utils/validate/screen_bonus.c	utils/validate/textures_bonus.c	\
+						utils/validate/colors_bonus.c
+
+B_SRCS				=	controls_bonus.c				parse_bonus.c				validate_bonus.c				window_bonus.c					\
+						init_bonus.c					raycasting_bonus.c
+
+BONUS_SOURCES		=	$(B_SRCS) $(B_UTILS) $(B_UTILS_PARSE) $(B_UTILS_VALIDATE)
 
 LEAKS_FLAGS			=	--tool=memcheck --leak-check=full --leak-resolution=high --show-leak-kinds=all --track-origins=yes
 
@@ -214,7 +224,7 @@ leak:		## Run memory leak for valid cub file.
 
 ##@ Compilation
 bonus:		## Make bonus
-			@make fclean
+			@make clean
 			@make $(BONUS)
 
 re:			## Call fclean => all
