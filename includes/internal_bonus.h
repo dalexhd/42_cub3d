@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 16:11:17 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:45:18 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/25 18:14:14 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,9 @@
 # define ERR_AFTER_MAP "%s can't be set after map!"
 # define ERR_TEX_LOADED "%s defined multiple times!"
 # define ERR_MAP_MISSING "Map could not be found at the .cub file!"
-
+/*
+** Music close command (sorry for that shit command spliting :-P)
+*/
+# define MUSIC_1 "ps aux | grep 'aplay ./assets/sounds/main_game.wav'"
+# define MUSIC_2 " | tr -s ' ' | cut -d ' ' -f 2 | head -n 1"
 #endif

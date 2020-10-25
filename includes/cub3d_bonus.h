@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/25 10:32:56 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/25 18:19:05 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # include <mlx.h>
 # include <stdio.h>
 # include <time.h>
+# include <signal.h>
 
 /*
 ** Include our game global settings.
@@ -199,6 +200,14 @@ typedef struct		s_sprites
 	t_sprite		*data;
 }					t_sprites;
 
+typedef struct		s_fps
+{
+	double			time;
+	double			old_time;
+	double			count;
+	t_bool			showing;
+}					t_fps;
+
 typedef struct		s_game
 {
 	void			*mlx;
@@ -222,6 +231,7 @@ typedef struct		s_game
 	t_textures		textures;
 	t_direction		plane;
 	t_valid			valid;
+	t_fps			fps;
 	t_tmp			tmp;
 }					t_game;
 

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 13:16:37 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/25 10:56:40 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:57:04 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void				raycasting(t_game *game)
 		clear_memory(game);
 		exit(EXIT_SUCCESS);
 	}
-	fps_counter(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img_ptr, 0, 0);
+	fps_counter(game);
 }

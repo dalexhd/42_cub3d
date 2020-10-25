@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:51:48 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/25 18:15:54 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static	t_player	init_player(void)
 
 	player = (t_player){
 		.deg = 0,
-		.rotating = {.right = FALSE, .left = FALSE},
+		.rotating = {.right = false, .left = false},
 		.speed = PL_SPEED * 3.6 / 100.0, .rotate_speed = RT_SPEED * M_PI / 180,
-		.moving = {.forward = FALSE, .backward = FALSE,
-		.right = FALSE, .left = FALSE},
+		.moving = {.forward = false, .backward = false,
+		.right = false, .left = false},
 	};
 	return (player);
 }
@@ -58,7 +58,13 @@ static	t_game		*init_structure(void)
 	game->plane = (t_direction){.x = 0, .y = 1};
 	game->player = init_player();
 	game->valid = (t_valid){.screen = true, .textures = true, .map = true};
+	game->fps = (t_fps){.count = 0, .time = 0, .old_time = 0, .showing = false};
 	return (game);
+}
+
+static	void		load_music(void)
+{
+	system("aplay ./assets/sounds/main_game.wav -t wav &>/dev/null");
 }
 
 void				init_game(int argc, char **argv)
@@ -85,6 +91,7 @@ void				init_game(int argc, char **argv)
 	if (!game->bmp)
 		load_controls(game);
 	raycasting(game);
+	load_music();
 	mlx_loop_hook(game->mlx, &main_loop, game);
 	mlx_loop(game->mlx);
 }

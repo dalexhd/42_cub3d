@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:39:53 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static	t_player	init_player(void)
 
 	player = (t_player){
 		.deg = 0,
-		.rotating = {.right = FALSE, .left = FALSE},
+		.rotating = {.right = false, .left = false},
 		.speed = PL_SPEED * 3.6 / 100.0, .rotate_speed = RT_SPEED * M_PI / 180,
-		.moving = {.forward = FALSE, .backward = FALSE,
-		.right = FALSE, .left = FALSE},
+		.moving = {.forward = false, .backward = false,
+		.right = false, .left = false},
 	};
 	return (player);
 }

@@ -68,7 +68,7 @@ SOURCES				=	$(SRCS) $(UTILS) $(UTILS_PARSE) $(UTILS_VALIDATE)
 # Bonus part
 B_UTILS				=	utils/memory_bonus.c			utils/game_bonus.c			utils/player_bonus.c			utils/color_bonus.c				\
 						utils/raycasting_bonus.c		utils/rotating_bonus.c		utils/movement_bonus.c			utils/screenshot_bonus.c		\
-						utils/sprite_bonus.c			utils/ray_bonus.c
+						utils/sprite_bonus.c			utils/ray_bonus.c			utils/fps_counter_bonus.c
 
 B_UTILS_PARSE		=	utils/parse/file_bonus.c		utils/parse/map_bonus.c		utils/parse/textures_bonus.c
 

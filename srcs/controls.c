@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 10:33:47 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:37:15 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,40 +31,38 @@ int		key_press(int keycode, t_game *game)
 	if (keycode == KEY_ESC)
 		close_window(game);
 	if (keycode == KEY_W)
-		game->player.moving.forward = 1;
+		game->player.moving.forward = true;
 	if (keycode == KEY_S)
-		game->player.moving.backward = 1;
+		game->player.moving.backward = true;
 	if (keycode == KEY_D)
-		game->player.moving.right = 1;
+		game->player.moving.right = true;
 	if (keycode == KEY_A)
-		game->player.moving.left = 1;
+		game->player.moving.left = true;
 	if (keycode == KEY_RIGHT)
-		game->player.rotating.right = 1;
+		game->player.rotating.right = true;
 	if (keycode == KEY_LEFT)
-		game->player.rotating.left = 1;
+		game->player.rotating.left = true;
 	if (keycode == KEY_SHIFT)
-		game->player.shifting = 1;
+		game->player.shifting = true;
 	return (0);
 }
 
 int		key_release(int keycode, t_game *game)
 {
 	if (keycode == KEY_W)
-		game->player.moving.forward = 0;
+		game->player.moving.forward = false;
 	if (keycode == KEY_S)
-		game->player.moving.backward = 0;
+		game->player.moving.backward = false;
 	if (keycode == KEY_D)
-		game->player.moving.right = 0;
+		game->player.moving.right = false;
 	if (keycode == KEY_A)
-		game->player.moving.left = 0;
+		game->player.moving.left = false;
 	if (keycode == KEY_RIGHT)
-		game->player.rotating.right = 0;
+		game->player.rotating.right = false;
 	if (keycode == KEY_LEFT)
-		game->player.rotating.left = 0;
+		game->player.rotating.left = false;
 	if (keycode == KEY_SHIFT)
-	{
-		game->player.shifting = 0;
-	}
+		game->player.shifting = false;
 	return (0);
 }
 
