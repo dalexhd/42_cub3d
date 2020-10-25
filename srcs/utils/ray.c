@@ -6,11 +6,11 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 10:48:19 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 10:49:21 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube3d.h"
+#include "../../includes/cub3d.h"
 
 t_bool			is_side(t_ray ray)
 {

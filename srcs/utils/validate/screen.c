@@ -6,11 +6,11 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:41 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/23 13:59:06 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube3d.h"
+#include "../../includes/cub3d.h"
 
 t_bool		has_screen(t_game *game)
 {

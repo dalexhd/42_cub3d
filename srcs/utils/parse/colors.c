@@ -6,11 +6,11 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 17:45:59 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 12:11:00 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube3d.h"
+#include "../includes/cub3d.h"
 
 void	invalid_color(t_game *game)
 {

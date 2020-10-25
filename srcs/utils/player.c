@@ -6,11 +6,11 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 12:47:56 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/19 17:14:24 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cube3d.h"
+#include "../../includes/cub3d.h"
 
 t_bool	is_moving(t_game *game)
 {
