@@ -17,7 +17,7 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "gdb",
-			"preLaunchTask": "C/C++: gcc build active file",
+			"preLaunchTask": "C/C++: gcc build active file"
 		},
 		{
 			"name": "Make bonus",
@@ -32,7 +32,7 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "gdb",
-			"preLaunchTask": "C/C++: gcc build active file",
+			"preLaunchTask": "C/C++: gcc build active file"
 		}
 	]
 }
