@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:18:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:38:24 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:00:01 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,30 +67,30 @@ t_sprite		init_sprite(t_game *game, t_sprite sprite)
 	return (sprite);
 }
 
-void			draw_sprite(t_game *game, t_sprite spr)
+void			draw_sprite(t_game *game, t_sprite s)
 {
 	int			x;
 	int			y;
 	int			k;
-	t_texture	tex;
+	t_texture	t;
 
-	x = spr.start.x - 1;
-	tex = game->textures.sprite;
-	while (++x < spr.end.x)
+	x = s.start.x - 1;
+	t = game->textures.sprite;
+	while (++x < s.end.x)
 	{
-		spr.texture.x = (x - (-spr.width / 2 + spr.screen_x)) *
-			tex.width / spr.width;
-		if (spr.transform.y > 0 && x > 0 && x < game->width &&
-			spr.transform.y < game->zbuffer[x])
+		s.texture.x = (x - (-s.width / 2 + s.screen_x)) * t.width / s.width;
+		if (s.transform.y > 0 && x > 0 && x < game->width &&
+			s.transform.y < game->zbuffer[x])
 		{
-			y = spr.start.y - 1;
-			while (++y < spr.end.y)
+			y = s.start.y - 1;
+			while (++y < s.end.y)
 			{
-				k = y * 256 - game->height * 128 + spr.height * 128;
-				spr.texture.y = ((k * tex.height) / spr.height) / 256;
-				spr.color = tex.ptr[tex.width * spr.texture.y + spr.texture.x];
-				if ((spr.color & 0x00ffffff) != 0)
-					set_pixel(game, game->width * y + x, ft_color(spr.color, spr.d));
+				k = y * 256 - game->height * 128 + s.height * 128;
+				s.texture.y = ((k * t.height) / s.height) / 256;
+				s.color = t.ptr[t.width * s.texture.y + s.texture.x];
+				if ((s.color & 0x00ffffff) != 0)
+					set_pixel(game, game->width * y + x,
+						ft_color(s.color, s.d));
 			}
 		}
 	}

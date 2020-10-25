@@ -6,14 +6,14 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 18:07:00 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:32:51 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 14:11:53 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/types.h"
 
-#ifndef SETTINGS_H
-# define SETTINGS_H
+#ifndef SETTINGS_BONUS_H
+# define SETTINGS_BONUS_H
 
 /*
 ** Velocidad del jugador (SI: m/s).
@@ -24,9 +24,13 @@
 */
 # define RT_SPEED 3.6
 /*
-** (BONUS)Habilitar sombras (TRUE/FALSE).
+** Habilitar sombras (TRUE/FALSE).
 */
 # define SHADES TRUE
+/*
+** Contador de fotogramas (TRUE/FALSE).
+*/
+# define FPS FALSE
 /*
 ** Título de la ventana del juego.
 */

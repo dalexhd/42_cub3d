@@ -6,64 +6,70 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 13:16:37 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:34:27 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/25 10:56:40 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-void			floor_ceiling(t_game *game)
+static	void		floor_ceiling_rows(t_game *game, t_direction step,
+	t_direction floor, double dist)
 {
-	t_texture	floor_texture;
-	t_texture	ceiling_texture;
+	t_ivector		cell;
+	t_ivector		fl;
+	t_ivector		ce;
+	int				x;
+	int				cl;
 
-	floor_texture = game->textures.floor;
-	ceiling_texture = game->textures.ceiling;
-	for(int y = 0; y < game->height; y++)
+	x = -1;
+	while (++x < game->width)
 	{
-		double rayDirX0 = game->dir.x - game->plane.x;
-		double rayDirY0 = game->dir.y - game->plane.y;
-		double rayDirX1 = game->dir.x + game->plane.x;
-		double rayDirY1 = game->dir.y + game->plane.y;
-		int p = y - game->height / 2;
-		double posZ = 0.5 * game->height;
-		double rowDistance = posZ / p;
-		double floorStepX = rowDistance * (rayDirX1 - rayDirX0) / game->width;
-		double floorStepY = rowDistance * (rayDirY1 - rayDirY0) / game->width;
-		double floorX = game->player.x + rowDistance * rayDirX0;
-		double floorY = game->player.y + rowDistance * rayDirY0;
-		for(int x = 0; x < game->width; ++x)
-		{
-			// the cell coord is simply got from the integer parts of floorX and floorY
-			int cellX = (int)(floorX);
-			int cellY = (int)(floorY);
-
-			// get the texture coordinate from the fractional part
-			int tx_f = (int)(floor_texture.width * (floorX - cellX)) & (floor_texture.width - 1);
-			int ty_f = (int)(floor_texture.height * (floorY - cellY)) & (floor_texture.height - 1);
-
-			int tx_c = (int)(ceiling_texture.width * (floorX - cellX)) & (ceiling_texture.width - 1);
-			int ty_c = (int)(ceiling_texture.height * (floorY - cellY)) & (ceiling_texture.height - 1);
-			floorX += floorStepX;
-			floorY += floorStepY;
-			// choose texture and draw the pixel
-			int color;
-			// floor
-			color = floor_texture.ptr[floor_texture.width * ty_f + tx_f];
-			set_pixel(game, game->width * y + x, ft_color(color, rowDistance));
-			// ceiling
-  			color = ceiling_texture.ptr[ceiling_texture.width * ty_c + tx_c];
-			set_pixel(game, game->width * (game->height - y - 1) + x, ft_color(color, rowDistance));
-		}
+		cell = (t_ivector){.x = (int)(floor.x), .y = (int)(floor.y)};
+		fl = (t_ivector){.x = (int)(game->textures.floor.width *
+			(floor.x - cell.x)) & (game->textures.floor.width - 1),
+		.y = (int)(game->textures.floor.height * (floor.y - cell.y)) &
+			(game->textures.floor.height - 1)};
+		ce = (t_ivector){.x = (int)(game->textures.ceiling.width *
+			(floor.x - cell.x)) & (game->textures.ceiling.width - 1),
+		.y = (int)(game->textures.ceiling.height * (floor.y - cell.y)) &
+			(game->textures.ceiling.height - 1)};
+		floor = (t_direction){.x = floor.x + step.x, .y = floor.y + step.y};
+		cl = game->textures.floor.ptr[game->textures.floor.width * fl.y + fl.x];
+		set_pixel(game, game->width * game->tmp.y + x, ft_color(cl, dist));
+		set_pixel(game, game->width * (game->height - game->tmp.y - 1) + x,
+		ft_color(game->textures.ceiling.ptr[game->textures.ceiling.width *
+			ce.y + ce.x], dist));
 	}
 }
 
-void			raycasting(t_game *game)
+static	void		floor_ceiling_cols(t_game *game)
 {
-	t_ray	ray;
+	t_vdirection	r_d;
+	t_direction		step;
+	t_direction		floor;
+	double			row_dist;
+
+	game->tmp.y = -1;
+	while (++game->tmp.y < game->height)
+	{
+		r_d = (t_vdirection){.x0 = game->dir.x - game->plane.x,
+		.y0 = game->dir.y - game->plane.y, .x1 = game->dir.x + game->plane.x,
+		.y1 = game->dir.y + game->plane.y};
+		row_dist = (0.5 * game->height) / (game->tmp.y - game->height / 2);
+		step = (t_direction){.x = row_dist * (r_d.x1 - r_d.x0) / game->width,
+		.y = row_dist * (r_d.y1 - r_d.y0) / game->width};
+		floor = (t_direction){.x = game->player.x + row_dist * r_d.x0,
+			.y = game->player.y + row_dist * r_d.y0};
+		floor_ceiling_rows(game, step, floor, row_dist);
+	}
+}
+
+void				raycasting(t_game *game)
+{
+	t_ray			ray;
 
 	game->x = -1;
-	floor_ceiling(game);
+	floor_ceiling_cols(game);
 	while (++game->x < game->width)
 	{
 		ray = cast_texture(game, cast_ray(game, game->x));
@@ -76,5 +82,6 @@ void			raycasting(t_game *game)
 		clear_memory(game);
 		exit(EXIT_SUCCESS);
 	}
+	fps_counter(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img_ptr, 0, 0);
 }

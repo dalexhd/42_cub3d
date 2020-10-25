@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   internal.h                                         :+:      :+:    :+:   */
+/*   internal_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 16:11:17 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/17 12:22:40 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:45:18 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERNAL_H
-# define INTERNAL_H
+#ifndef INTERNAL_BONUS_H
+# define INTERNAL_BONUS_H
 
 /*
 ** Definimos los valores de las direcciones de los rayos

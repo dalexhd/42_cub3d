@@ -6,12 +6,12 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:37:28 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/25 10:32:56 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 /*
 ** Include our libraries.
@@ -39,6 +39,7 @@
 # include <stdarg.h>
 # include <mlx.h>
 # include <stdio.h>
+# include <time.h>
 
 /*
 ** Include our game global settings.
@@ -120,17 +121,19 @@ typedef struct		s_color
 	int				b;
 }					t_color;
 
-typedef struct		s_colors
-{
-	t_color			floor;
-	t_color			ceiling;
-}					t_colors;
-
 typedef struct		s_direction
 {
 	double			x;
 	double			y;
 }					t_direction;
+
+typedef struct		s_vdirection
+{
+	double			x0;
+	double			y0;
+	double			x1;
+	double			y1;
+}					t_vdirection;
 
 typedef struct		s_ivector
 {
@@ -162,7 +165,6 @@ typedef struct		s_valid
 {
 	t_bool			screen;
 	t_bool			textures;
-	t_bool			colors;
 	t_bool			map;
 }					t_valid;
 
@@ -171,6 +173,7 @@ typedef struct		s_tmp
 	t_bool			width;
 	t_bool			height;
 	t_bool			safe_line;
+	t_bool			y;
 }					t_tmp;
 
 typedef struct		s_sprite
@@ -214,7 +217,6 @@ typedef struct		s_game
 	t_bool			bmp;
 	t_img			img;
 	t_ray			*rays;
-	t_colors		colors;
 	t_player		player;
 	t_direction		dir;
 	t_textures		textures;
@@ -287,14 +289,12 @@ void				draw_textured_line(t_game *game, size_t start,
 void				draw_line(t_game *game, size_t start, size_t end,
 	int color);
 int					take_screenshot(t_game *game);
+void				fps_counter(t_game *game);
 /*
 ** Validate functions.
 */
 t_bool				valid_cubfile(char *file);
 t_bool				validate_color(t_game *game, char *color, char *line);
-t_bool				has_colors(t_game *game);
-t_bool				has_floor(t_game *game);
-t_bool				has_ceiling(t_game *game);
 t_bool				has_screen(t_game *game);
 t_bool				has_textures(t_game *game);
 t_bool				has_map(t_game *game, t_bool check);
