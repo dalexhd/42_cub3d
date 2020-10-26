@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:14 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:15:05 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/26 16:20:34 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void		parse_game(t_game *game, char *file)
 	char	*line;
 	char	*trimmed;
 	int		fd;
+	size_t	i;
+	size_t	z;
 
 	fd = parse_file(game, file);
 	game->mlx = mlx_init();
@@ -61,5 +63,7 @@ void		parse_game(t_game *game, char *file)
 	ft_strdel(&line);
 	close(fd);
 	fill_map(game);
-	set_sprites(game);
+	i = -1;
+	z = -1;
+	set_sprites(game, i, z);
 }
