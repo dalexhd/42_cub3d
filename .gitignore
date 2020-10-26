@@ -10,3 +10,4 @@ test.libc
 history.csv
 cub3D
 main_test.c
+*.bmp
