@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:04:06 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/25 18:15:54 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 09:59:03 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static	t_game		*init_structure(void)
 	game->dir = (t_direction){.x = -1., .y = 0.};
 	game->plane = (t_direction){.x = 0, .y = 1};
 	game->player = init_player();
-	game->valid = (t_valid){.screen = true, .textures = true, .map = true};
+	game->valid = (t_valid){.screen = true, .textures = true, .map = true,
+		.file = true};
 	game->fps = (t_fps){.count = 0, .time = 0, .old_time = 0, .showing = false};
 	return (game);
 }
