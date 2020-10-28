@@ -6,17 +6,17 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:14 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/28 10:00:11 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/26 16:20:34 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-void			parse_screen(t_game *game, char *line)
+void		parse_screen(t_game *game, char *line)
 {
-	char		**size;
-	char		*resolution;
-	t_bool		valid;
+	char	**size;
+	char	*resolution;
+	t_bool	valid;
 
 	if (!ft_strncmp("R ", line, 2) && (size = ft_split(line, ' ')) &&
 		(resolution = ft_strtrim(line, "R ")))
@@ -40,25 +40,13 @@ void			parse_screen(t_game *game, char *line)
 	}
 }
 
-static	void	valid_line(t_game *game, char *line)
+void		parse_game(t_game *game, char *file)
 {
-	if (!(!ft_strncmp("R ", line, 2) || !ft_strncmp("NO ", line, 3) ||
-		!ft_strncmp("SO ", line, 3) || !ft_strncmp("WE ", line, 3) ||
-		!ft_strncmp("WE ", line, 3) || !ft_strncmp("EA ", line, 3) ||
-		!ft_strncmp("S ", line, 2) || !ft_strncmp("F ", line, 2) ||
-		!ft_strlen(line) || !ft_strncmp("C ", line, 2)) &&
-			!has_map(game, false))
-	{
-		ft_error("Invalid .cub file! Found %s", false, line);
-		game->valid.file = false;
-	}
-}
-
-void			parse_game(t_game *game, char *file)
-{
-	char		*line;
-	char		*trimmed;
-	int			fd;
+	char	*line;
+	char	*trimmed;
+	int		fd;
+	size_t	i;
+	size_t	z;
 
 	fd = parse_file(game, file);
 	game->mlx = mlx_init();
@@ -69,12 +57,13 @@ void			parse_game(t_game *game, char *file)
 		parse_screen(game, trimmed);
 		parse_textures(game, trimmed);
 		parse_map(game, line);
-		valid_line(game, line);
 		ft_strdel(&trimmed);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
 	close(fd);
 	fill_map(game);
-	set_sprites(game);
+	i = -1;
+	z = -1;
+	set_sprites(game, i, z);
 }
