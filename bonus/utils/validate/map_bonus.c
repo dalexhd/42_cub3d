@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/28 09:57:27 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/26 16:06:10 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static	t_bool		check_vertical_edges(t_game *game, int x, int y)
 	{
 		if (game->map[y][x] != ' ' && game->map[y][x] != '1')
 		{
-			ft_error("Invalid Map edges!", false);
+			ft_error("Invalid Map #2", false);
 			return (false);
 		}
 		x++;
@@ -81,8 +81,8 @@ static	t_bool		check_map(t_game *game, int x, int y)
 {
 	if (game->map[y][x] == '1' || game->map[y][x] == 'f')
 		return (true);
-	if (game->map[y][x] == '2' || game->map[y][x] == '0' ||
-		game->map[y][x] == game->spawn)
+	if (game->map[y][x] == '2' || game->map[y][x] == '3' ||
+		game->map[y][x] == '0' || game->map[y][x] == game->spawn)
 	{
 		game->map[y][x] = 'f';
 		return (check_map(game, x, y + 1) && check_map(game, x, y - 1) &&
