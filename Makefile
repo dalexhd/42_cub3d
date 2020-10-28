@@ -6,7 +6,7 @@
 #    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 15:33:18 by aborboll          #+#    #+#              #
-#    Updated: 2020/10/24 13:58:38 by aborboll         ###   ########.fr        #
+#    Updated: 2020/10/28 10:10:11 by aborboll         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -235,7 +235,7 @@ testback:		## Make cub3d test
 			cd ./tools/tester && ./test_map_valid_function.sh -f
 
 test:		## Make cub3d test
-			cd ./cub3d-tester && ./destroyer.sh --process 10
+			cd ./cub3d-tester && ./destroyer.sh --process 3
 
 ##@ Help
 help:		## View all available commands.

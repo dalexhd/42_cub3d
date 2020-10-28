@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/26 16:17:52 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 09:58:08 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct		s_textures
 	t_texture		east;
 	t_texture		west;
 	t_texture		sprite;
-	t_texture		sprite1;
 	t_texture		floor;
 	t_texture		ceiling;
 }					t_textures;
@@ -168,6 +167,7 @@ typedef struct		s_valid
 	t_bool			screen;
 	t_bool			textures;
 	t_bool			map;
+	t_bool			file;
 }					t_valid;
 
 typedef struct		s_tmp
@@ -224,7 +224,6 @@ typedef struct		s_game
 	int				minimap;
 	char			spawn;
 	t_sprites		sprites;
-	t_sprites		sprites1;
 	t_bool			bmp;
 	t_img			img;
 	t_ray			*rays;
@@ -333,7 +332,7 @@ t_texture			load_texture(void *mlx_ptr, char *path);
 /*
 ** Sprites functions.
 */
-void				set_sprites(t_game *game, size_t i, size_t z);
+void				set_sprites(t_game *game);
 void				draw_sprites(t_game *game);
 /*
 ** Clear the memory of the game

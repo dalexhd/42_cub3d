@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:44:37 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 09:56:57 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef struct		s_valid
 	t_bool			textures;
 	t_bool			colors;
 	t_bool			map;
+	t_bool			file;
 }					t_valid;
 
 typedef struct		s_tmp
