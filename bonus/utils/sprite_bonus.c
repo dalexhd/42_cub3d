@@ -6,17 +6,17 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:18:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/26 18:35:41 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:52:48 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d_bonus.h"
 
-void			order_sprites(t_game *game)
+static	void		order_sprites(t_game *game)
 {
-	size_t		i;
-	size_t		k;
-	t_sprite	tmp;
+	size_t			i;
+	size_t			k;
+	t_sprite		tmp;
 
 	if (game->sprites.count == 0)
 		return ;
@@ -40,7 +40,7 @@ void			order_sprites(t_game *game)
 	}
 }
 
-t_sprite		init_sprite(t_game *game, t_sprite sprite)
+static	t_sprite	init_sprite(t_game *game, t_sprite sprite)
 {
 	sprite.x = sprite.x - game->player.x;
 	sprite.y = sprite.y - game->player.y;
@@ -69,12 +69,12 @@ t_sprite		init_sprite(t_game *game, t_sprite sprite)
 	return (sprite);
 }
 
-void			draw_sprite(t_game *game, t_sprite s)
+void				draw_sprite(t_game *game, t_sprite s)
 {
-	int			x;
-	int			y;
-	int			k;
-	t_texture	t;
+	int				x;
+	int				y;
+	int				k;
+	t_texture		t;
 
 	x = s.start.x - 1;
 	t = game->textures.sprite;
@@ -98,9 +98,9 @@ void			draw_sprite(t_game *game, t_sprite s)
 	}
 }
 
-void			draw_sprites(t_game *game)
+void				draw_sprites(t_game *game)
 {
-	size_t		i;
+	size_t			i;
 
 	i = -1;
 	order_sprites(game);
@@ -109,11 +109,11 @@ void			draw_sprites(t_game *game)
 		draw_sprite(game, init_sprite(game, game->sprites.data[i]));
 }
 
-void			set_sprites(t_game *game)
+void				set_sprites(t_game *game)
 {
-	size_t		y;
-	size_t		x;
-	size_t		i;
+	size_t			y;
+	size_t			x;
+	size_t			i;
 
 	if (valid_cub_struct(game))
 	{

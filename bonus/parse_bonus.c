@@ -6,13 +6,13 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:14 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/28 10:00:11 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:30:16 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d_bonus.h"
 
-void			parse_screen(t_game *game, char *line)
+static	void	parse_screen(t_game *game, char *line)
 {
 	char		**size;
 	char		*resolution;

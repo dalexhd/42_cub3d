@@ -6,16 +6,16 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 18:42:35 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:08:28 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:50:27 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d_bonus.h"
 
-void		rotate_right(t_game *game)
+static	void	rotate_right(t_game *game)
 {
-	double	old_dir_x;
-	double	old_plane_x;
+	double		old_dir_x;
+	double		old_plane_x;
 
 	old_dir_x = game->dir.x;
 	game->dir.x = game->dir.x * cos(game->player.rotate_speed) -
@@ -29,10 +29,10 @@ void		rotate_right(t_game *game)
 		game->plane.y * cos(game->player.rotate_speed);
 }
 
-void		rotate_left(t_game *game)
+void			rotate_left(t_game *game)
 {
-	double	old_dir_x;
-	double	old_plane_x;
+	double		old_dir_x;
+	double		old_plane_x;
 
 	old_dir_x = game->dir.x;
 	game->dir.x = game->dir.x * cos(-game->player.rotate_speed) - game->dir.y *
@@ -46,7 +46,7 @@ void		rotate_left(t_game *game)
 		game->plane.y * cos(-game->player.rotate_speed);
 }
 
-void		ft_rotate(t_game *game)
+void			ft_rotate(t_game *game)
 {
 	if (game->player.rotating.left)
 		rotate_left(game);

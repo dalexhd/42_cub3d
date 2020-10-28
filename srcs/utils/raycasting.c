@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 13:55:49 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:40:50 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_ray			cast_texture(t_game *game, t_ray ray)
 	return (ray);
 }
 
-t_ray			cast_ray2(t_game *game, t_ray ray, int x)
+static	t_ray	cast_ray2(t_game *game, t_ray ray, int x)
 {
 	if (!is_side(ray))
 		ray.dist = (ray.map.x - game->player.x +

@@ -6,16 +6,16 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 13:16:37 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:30:50 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void		floor_ceiling(t_game *game)
+static	void	floor_ceiling(t_game *game)
 {
-	int		y;
-	int		x;
+	int			y;
+	int			x;
 
 	y = 0;
 	while (y < game->height)
@@ -33,9 +33,9 @@ void		floor_ceiling(t_game *game)
 	}
 }
 
-void		raycasting(t_game *game)
+void			raycasting(t_game *game)
 {
-	t_ray	ray;
+	t_ray		ray;
 
 	game->x = -1;
 	floor_ceiling(game);

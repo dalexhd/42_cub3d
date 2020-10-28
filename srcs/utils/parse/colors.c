@@ -6,18 +6,13 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 17:45:59 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:37:02 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	invalid_color(t_game *game)
-{
-	game->valid.colors = false;
-}
-
-int		parse_color(t_game *game, char *color, char *line)
+static	int	parse_color(t_game *game, char *color, char *line)
 {
 	char	*tmp;
 	int		result;
@@ -34,12 +29,12 @@ int		parse_color(t_game *game, char *color, char *line)
 		if (color == NULL)
 			validate_color(game, color, line);
 		free(tmp);
-		invalid_color(game);
+		game->valid.colors = false;
 	}
 	return (-1);
 }
 
-void	parse_floor(t_game *game, char *line)
+void		parse_floor(t_game *game, char *line)
 {
 	char	**colors;
 	char	*color;
@@ -68,7 +63,7 @@ void	parse_floor(t_game *game, char *line)
 	}
 }
 
-void	parse_ceiling(t_game *game, char *line)
+void		parse_ceiling(t_game *game, char *line)
 {
 	char	**colors;
 	char	*color;

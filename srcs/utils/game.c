@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 12:46:18 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:39:14 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,4 @@ void			draw_textured_line(t_game *game, size_t start,
 			color = texture.ptr[texture.height * text_y + ray.texture_x];
 		set_pixel(game, game->width * i + game->x, color);
 	}
-}
-
-void			draw_line(t_game *game, size_t start, size_t end, int color)
-{
-	size_t		y;
-
-	y = start - 1;
-	while (++y <= end)
-		set_pixel(game, game->width * y + game->x, color);
 }

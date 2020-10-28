@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/28 09:56:57 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:48:04 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,11 +267,6 @@ void				move_backward(t_game *game);
 void				move_right(t_game *game);
 void				move_left(t_game *game);
 /*
-** Rotating functions.
-*/
-void				rotate_right(t_game *game);
-void				rotate_left(t_game *game);
-/*
 ** Player functions.
 */
 void				set_player_position(t_game *game, size_t x, size_t y);
@@ -285,8 +280,6 @@ int					main_loop(t_game *game);
 void				set_pixel(t_game *game, size_t pixel, int color);
 void				draw_textured_line(t_game *game, size_t start,
 	size_t end, t_ray ray);
-void				draw_line(t_game *game, size_t start, size_t end,
-	int color);
 int					take_screenshot(t_game *game);
 /*
 ** Validate functions.

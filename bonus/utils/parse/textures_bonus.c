@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 15:47:40 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:17:20 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:54:29 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_texture		load_texture(void *mlx_ptr, char *path)
 	return (texture);
 }
 
-char			*parse_texture(t_game *game, char *name, size_t sp, char *line)
+static	char	*parse_texture(t_game *game, char *name, size_t sp, char *line)
 {
 	char		*trimmed_path;
 
