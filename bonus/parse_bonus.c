@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:14 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/28 10:30:16 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 14:54:05 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void			parse_game(t_game *game, char *file)
 
 	fd = parse_file(game, file);
 	game->mlx = mlx_init();
+	game->tmp.nullbef = false;
 	while (get_next_line(fd, &line))
 	{
 		game->tmp.safe_line = false;
