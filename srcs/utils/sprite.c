@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:18:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:07:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/27 16:19:35 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void			order_sprites(t_game *game)
 	size_t		k;
 	t_sprite	tmp;
 
+	if (game->sprites.count == 0)
+		return ;
 	i = -1;
 	while (++i < game->sprites.count)
 		game->sprites.data[i].d = hypot(game->sprites.data[i].x -
