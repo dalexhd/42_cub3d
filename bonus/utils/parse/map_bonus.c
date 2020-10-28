@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:11 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:08:28 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/26 16:07:39 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static	t_bool	is_map_line(char *line)
 	t_bool		has;
 	t_bool		has_rev;
 
-	set = " 120NSWE";
+	set = " 1230NSWE";
 	last_char = line[ft_strlen(line) - 1];
 	has = FALSE;
 	has_rev = FALSE;
@@ -64,6 +64,8 @@ void			check_player_sprite_pos(t_game *game)
 		}
 		if (game->tmp_map[i] == '2')
 			game->sprites.count++;
+		if (game->tmp_map[i] == '3')
+			game->sprites1.count++;
 		i++;
 	}
 	if (valid != 1)

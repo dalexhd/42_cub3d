@@ -5,109 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 16:56:33 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/28 09:57:27 by aborboll         ###   ########.fr       */
+/*   Created: 2020/10/07 16:56:11 by aborboll          #+#    #+#             */
+/*   Updated: 2020/10/24 13:08:28 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d_bonus.h"
 
-t_bool				has_map(t_game *game, t_bool check)
+static	t_bool	is_map_line(char *line)
 {
-	t_bool			valid;
+	char		*set;
+	char		last_char;
+	size_t		i;
+	t_bool		has;
+	t_bool		has_rev;
 
-	valid = ft_strlen(game->tmp_map) > 0;
-	if (check && !valid)
-	{
-		ft_error(ERR_MAP_MISSING, false);
-		game->valid.map = false;
-	}
-	return (valid);
+	set = " 120NSWE";
+	last_char = line[ft_strlen(line) - 1];
+	has = FALSE;
+	has_rev = FALSE;
+	i = -1;
+	while (++i < ft_strlen(set))
+		if (line[0] == set[i])
+			has = TRUE;
+	i = -1;
+	while (++i < ft_strlen(set))
+		if (last_char == set[i])
+			has_rev = TRUE;
+	return (has && has_rev);
 }
 
-static	t_ivector	position(t_game *game, int x, int y)
+void			parse_map(t_game *game, char *line)
 {
-	t_ivector		pos;
+	char		*tmp;
 
-	pos.x = 0;
-	pos.y = 0;
-	while (game->map[y] != 0)
+	if (!game->tmp.safe_line && is_map_line(line))
 	{
-		x = 0;
-		while (game->map[y][x] != '\0')
+		tmp = game->tmp_map;
+		game->tmp_map = ft_strjoin(game->tmp_map, ft_strcat(line, "\n"));
+		free(tmp);
+	}
+}
+
+void			check_player_sprite_pos(t_game *game)
+{
+	size_t		i;
+	size_t		valid;
+
+	i = 0;
+	valid = 0;
+	while (game->tmp_map[i] != '\0')
+	{
+		if (game->tmp_map[i] == 'S' || game->tmp_map[i] == 'N' ||
+			game->tmp_map[i] == 'W' || game->tmp_map[i] == 'E')
 		{
-			if (game->map[y][x] == game->spawn)
+			valid++;
+			game->spawn = game->tmp_map[i];
+		}
+		if (game->tmp_map[i] == '2')
+			game->sprites.count++;
+		i++;
+	}
+	if (valid != 1)
+	{
+		ft_error("Could not found player position!", false);
+		game->valid.map = false;
+	}
+}
+
+void			fill_map(t_game *game)
+{
+	size_t		y;
+	size_t		x;
+
+	if (valid_cub_struct(game))
+	{
+		if (has_map(game, true))
+		{
+			check_player_sprite_pos(game);
+			if (validate_map(game))
 			{
-				pos.x = x + 0.5;
-				pos.y = y + 0.5;
-				return (pos);
+				game->map = ft_split(game->tmp_map, '\n');
+				y = -1;
+				while (game->map[++y])
+				{
+					x = -1;
+					while (game->map[y][++x])
+						if (game->map[y][x] == 'S' || game->map[y][x] == 'N' ||
+							game->map[y][x] == 'W' || game->map[y][x] == 'E')
+							set_player_position(game, x, y);
+				}
 			}
-			x++;
 		}
-		y++;
 	}
-	return (pos);
-}
-
-static	t_bool		check_vertical_edges(t_game *game, int x, int y)
-{
-	while (game->map[y][x] != '\0')
-	{
-		if (game->map[y][x] != ' ' && game->map[y][x] != '1')
-		{
-			ft_error("Invalid Map edges!", false);
-			return (false);
-		}
-		x++;
-	}
-	y = 0;
-	while (game->map[y])
-		y++;
-	y = y - 1;
-	x = 0;
-	while (game->map[y][x] != '\0')
-	{
-		if (game->map[y][x] != ' ' && game->map[y][x] != '1')
-		{
-			ft_error("Invalid Map #3", false);
-			return (false);
-		}
-		x++;
-	}
-	return (true);
-}
-
-static	t_bool		check_map(t_game *game, int x, int y)
-{
-	if (game->map[y][x] == '1' || game->map[y][x] == 'f')
-		return (true);
-	if (game->map[y][x] == '2' || game->map[y][x] == '0' ||
-		game->map[y][x] == game->spawn)
-	{
-		game->map[y][x] = 'f';
-		return (check_map(game, x, y + 1) && check_map(game, x, y - 1) &&
-		check_map(game, x + 1, y) && check_map(game, x - 1, y) &&
-		check_map(game, x + 1, y + 1) && check_map(game, x + 1, y - 1) &&
-		check_map(game, x - 1, y + 1) && check_map(game, x - 1, y - 1));
-	}
-	else
-	{
-		ft_error("Invalid Map #4", false);
-		return (false);
-	}
-}
-
-t_bool				validate_map(t_game *game)
-{
-	t_ivector		pos;
-
-	game->map = ft_split(game->tmp_map, '\n');
-	pos = position(game, 0, 0);
-	if (!(check_vertical_edges(game, 0, 0) && check_map(game, pos.x, pos.y)))
-	{
-		game->valid.map = false;
-		return (false);
-	}
-	ft_split_del(game->map);
-	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 15:47:40 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:17:20 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/26 15:41:36 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,19 @@ char			*parse_texture(t_game *game, char *name, size_t sp, char *line)
 	return (trimmed_path);
 }
 
+static	void	parse_sprites(t_game *game, char *line)
+{
+	char		*path;
+
+	path = NULL;
+	if ((path = parse_texture(game, "S ", 2, line)) &&
+		validate_texture(game, path, "S", game->textures.sprite.path))
+		game->textures.sprite = load_texture(game->mlx, path);
+	else if ((path = parse_texture(game, "S1 ", 3, line)) &&
+		validate_texture(game, path, "S1", game->textures.sprite1.path))
+		game->textures.sprite1 = load_texture(game->mlx, path);
+}
+
 void			parse_textures(t_game *game, char *line)
 {
 	char		*path;
@@ -72,7 +85,6 @@ void			parse_textures(t_game *game, char *line)
 	else if ((path = parse_texture(game, "C ", 2, line)) &&
 		validate_texture(game, path, "F", game->textures.ceiling.path))
 		game->textures.ceiling = load_texture(game->mlx, path);
-	else if ((path = parse_texture(game, "S ", 2, line)) &&
-		validate_texture(game, path, "S", game->textures.sprite.path))
-		game->textures.sprite = load_texture(game->mlx, path);
+	else
+		parse_sprites(game, line);
 }

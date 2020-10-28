@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 10:57:57 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/24 13:17:41 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/26 16:13:48 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	clear_textures(t_game *game, void *mlx_ptr)
 	clear_texture(game->textures.ceiling, mlx_ptr, true);
 	clear_texture(game->textures.floor, mlx_ptr, true);
 	clear_texture(game->textures.sprite, mlx_ptr, true);
+	if (game->textures.sprite1.path)
+		clear_texture(game->textures.sprite1, mlx_ptr, true);
 }
 
 void	clear_memory(t_game *game)
@@ -51,5 +53,6 @@ void	clear_memory(t_game *game)
 		ft_split_del(game->map);
 	free(game->zbuffer);
 	free(game->sprites.data);
+	free(game->sprites1.data);
 	free(game);
 }
