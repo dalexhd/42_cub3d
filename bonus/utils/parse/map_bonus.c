@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:56:11 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/28 10:53:47 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 14:54:31 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,21 @@ void			parse_map(t_game *game, char *line)
 {
 	char		*tmp;
 
-	if (!game->tmp.safe_line && is_map_line(line))
+	if (game->valid.map)
 	{
-		tmp = game->tmp_map;
-		game->tmp_map = ft_strjoin(game->tmp_map, ft_strcat(line, "\n"));
-		free(tmp);
+		if (!game->tmp.safe_line && is_map_line(line) && game->tmp.nullbef)
+		{
+			ft_error("Empty line at map found!!!", false);
+			game->valid.map = false;
+		}
+		if (!game->tmp.safe_line && is_map_line(line))
+		{
+			tmp = game->tmp_map;
+			game->tmp_map = ft_strjoin(game->tmp_map, ft_strcat(line, "\n"));
+			free(tmp);
+		}
+		if (has_map(game, false) && line[0] == '\0')
+			game->tmp.nullbef = true;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 07:32:52 by aborboll          #+#    #+#             */
-/*   Updated: 2020/10/28 10:48:13 by aborboll         ###   ########.fr       */
+/*   Updated: 2020/10/28 14:53:51 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ typedef struct		s_tmp
 	t_bool			height;
 	t_bool			safe_line;
 	t_bool			y;
+	t_bool			nullbef;
 }					t_tmp;
 
 typedef struct		s_sprite
